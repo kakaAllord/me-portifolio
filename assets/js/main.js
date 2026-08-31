@@ -30,10 +30,30 @@
   /* ====================== BOOT ======================
      A small terminal that boots the site: the command types itself,
      each step reports back with a dot-leader and a green "ok", and a
-     meter counts up alongside. The whole thing is budgeted at roughly
-     two seconds, and a click or keypress skips straight to the end —
-     a loader nobody can escape is just a wall.
+     meter counts up alongside. A click or any key skips straight to the
+     end — a loader nobody can escape is just a wall.
+
+     T below is the whole budget. With the default 20-character command
+     and four steps it runs to about four seconds:
+
+       typing   20 x 55ms   = 1100
+       pause                =  350
+       steps     4 x 510ms  = 2040
+       ready hold           =  500
+                              -----
+                              ~3990ms   then a 0.55s fade
+
+     Change CHAR or STEP to speed it up or slow it down; adding a step in
+     config.js adds STEP_OK + STEP_GAP to the total.
      ====================================================== */
+  var T = {
+    CHAR:      55,   // ms per character of the typed command
+    AFTER_CMD: 350,  // beat between the command and the first step
+    STEP_OK:   310,  // how long a step sits pending before it reports "ok"
+    STEP_GAP:  200,  // beat between one step reporting and the next appearing
+    READY:     500   // how long "ready." holds before the screen clears
+  };
+
   function boot() {
     var el = $('#boot');
     if (!el) return Promise.resolve();
@@ -76,7 +96,7 @@
       row.firstChild.textContent = label;
       log.appendChild(row);
       requestAnimationFrame(function () { row.classList.add('in'); });
-      setTimeout(function () { row.classList.add("ok"); onDone(); }, 105);
+      setTimeout(function () { row.classList.add("ok"); onDone(); }, T.STEP_OK);
     }
 
     return new Promise(function (resolve) {
@@ -90,8 +110,8 @@
       (function typeCmd() {
         if (done) return;
         line.textContent = cmd.slice(0, ++c);
-        if (c < cmd.length) return setTimeout(typeCmd, 21);
-        setTimeout(runSteps, 120);
+        if (c < cmd.length) return setTimeout(typeCmd, T.CHAR);
+        setTimeout(runSteps, T.AFTER_CMD);
       })();
 
       var i = 0;
@@ -103,12 +123,12 @@
           ready.className = 'boot__ready';
           ready.textContent = 'ready.';
           log.appendChild(ready);
-          return setTimeout(function () { finish(); resolve(); }, 240);
+          return setTimeout(function () { finish(); resolve(); }, T.READY);
         }
         addStep(steps[i], function () {
           i++;
           meter(Math.round((i / steps.length) * 100));
-          setTimeout(runSteps, 62);
+          setTimeout(runSteps, T.STEP_GAP);
         });
       }
     });

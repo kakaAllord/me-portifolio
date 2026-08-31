@@ -17,8 +17,10 @@ window.SITE_CONFIG = {
   -------------------------------------------------------- */
   whatsappNumber: "255795977630",
 
-  /* The message that is already typed for the visitor. */
-  whatsappMessage: "Hey, Allord! Just saw your portfolio. How are you?",
+  /* The message that is already typed for the visitor. Its job is to open a
+     working conversation, not just say hello — so it names a project and
+     asks for the next step. */
+  whatsappMessage: "Hey Allord! Just saw your portfolio. I've got a project I'd like us to work on — are you available?",
 
   /* --------------------------------------------------------
      LINKS
@@ -76,9 +78,9 @@ window.SITE_CONFIG = {
   /* --------------------------------------------------------
      BOOT SCREEN (the loader)
 
-     Deliberately short — the whole sequence runs in about two
-     seconds, and a click skips it. Adding steps makes it longer,
-     so keep this list to four or five at most.
+     The sequence runs to about four seconds, and a click or any
+     key skips it. Each extra step adds roughly half a second —
+     the pacing itself lives in the T block at the top of main.js.
   -------------------------------------------------------- */
   bootCommand: "./launch --portfolio",
 
