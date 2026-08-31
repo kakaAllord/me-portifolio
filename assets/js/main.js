@@ -447,13 +447,26 @@
      ====================================================== */
   function avatar() {
     var img = $('#avatarImg');
+    var webp = $('#avatarWebp');
     if (!img) return;
 
-    // no photo configured: drop the <img> before it ever requests anything,
-    // so there is no 404 in the console — the monogram behind it shows instead
-    if (!CFG.photo) { img.remove(); return; }
+    // no photo configured: drop the <picture> before it requests anything, so
+    // there is no 404 in the console — the monogram behind it shows instead
+    if (!CFG.photo) {
+      var pic = img.parentNode;
+      (pic && pic.tagName === 'PICTURE' ? pic : img).remove();
+      return;
+    }
 
-    img.addEventListener('error', function () { img.remove(); });
+    // if the file is missing or fails to decode, fall back to the monogram
+    img.addEventListener('error', function () {
+      var pic = img.parentNode;
+      (pic && pic.tagName === 'PICTURE' ? pic : img).remove();
+    });
+
+    if (webp && CFG.photoWebp) webp.srcset = CFG.photoWebp;
+    else if (webp) webp.remove();
+
     img.src = CFG.photo;
   }
 

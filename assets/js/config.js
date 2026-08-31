@@ -32,16 +32,17 @@ window.SITE_CONFIG = {
   linkedin: "",
 
   /* --------------------------------------------------------
-     YOUR PHOTO  (optional, but worth adding)
+     YOUR PHOTO
      --------------------------------------------------------
-     Drop a square-ish photo into assets/img/ and point at it:
+     photo      the fallback every browser understands (jpg/png)
+     photoWebp  optional smaller version modern browsers prefer
 
-         photo: "assets/img/allord.jpg",
-
-     Leave it as "" and the About section shows an "AA" monogram
-     instead — no broken image, no 404 in the console.
+     Both are generated from assets/img/allord-photo.png, the
+     original you dropped in. Set photo to "" to go back to the
+     "AA" monogram — nothing is requested when it is empty.
   -------------------------------------------------------- */
-  photo: "",
+  photo:     "assets/img/allord.jpg",
+  photoWebp: "assets/img/allord.webp",
 
   /* --------------------------------------------------------
      HERO TYPEWRITER

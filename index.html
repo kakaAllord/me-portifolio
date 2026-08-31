@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://kakaallord.github.io/me-portifolio/" />
 <meta property="og:title" content="Allord Archard — Full-Stack Developer" />
 <meta property="og:description" content="I build web apps end to end: the interface, the API behind it and the infrastructure it runs on. Available for freelance work." />
-<meta property="og:image" content="https://kakaallord.github.io/me-portifolio/assets/img/og.png" />
+<meta property="og:image" content="https://kakaallord.github.io/me-portifolio/assets/img/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Allord Archard — full-stack developer" />
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Allord Archard — Full-Stack Developer" />
 <meta name="twitter:description" content="I build web apps end to end: the interface, the API behind it and the infrastructure it runs on. Available for freelance work." />
-<meta name="twitter:image" content="https://kakaallord.github.io/me-portifolio/assets/img/og.png" />
+<meta name="twitter:image" content="https://kakaallord.github.io/me-portifolio/assets/img/og.jpg" />
 <meta name="twitter:image:alt" content="Allord Archard — full-stack developer" />
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
@@ -59,7 +59,7 @@
       "jobTitle": "Full-Stack Developer",
       "description": "Full-stack developer building web products end to end — interface, API and infrastructure — with a background in AI and embedded systems.",
       "url": "https://kakaallord.github.io/me-portifolio/",
-      "image": "https://kakaallord.github.io/me-portifolio/assets/img/og.png",
+      "image": "https://kakaallord.github.io/me-portifolio/assets/img/allord.jpg",
       "email": "mailto:allordarchard99@gmail.com",
       "telephone": "+255795977630",
       "sameAs": [
@@ -103,7 +103,7 @@
       "name": "Allord Archard — Full-Stack Developer",
       "isPartOf": { "@id": "https://kakaallord.github.io/me-portifolio/#website" },
       "about": { "@id": "https://kakaallord.github.io/me-portifolio/#allord" },
-      "primaryImageOfPage": "https://kakaallord.github.io/me-portifolio/assets/img/og.png",
+      "primaryImageOfPage": "https://kakaallord.github.io/me-portifolio/assets/img/og.jpg",
       "inLanguage": "en"
     },
     {
@@ -112,7 +112,7 @@
       "name": "Allord Archard — Freelance Software Development",
       "description": "Freelance web application development: front end, APIs and backends, AI features and hardware-connected builds.",
       "url": "https://kakaallord.github.io/me-portifolio/",
-      "image": "https://kakaallord.github.io/me-portifolio/assets/img/og.png",
+      "image": "https://kakaallord.github.io/me-portifolio/assets/img/og.jpg",
       "provider": { "@id": "https://kakaallord.github.io/me-portifolio/#allord" },
       "areaServed": "Worldwide",
       "availableLanguage": "en",
@@ -260,8 +260,12 @@
     <div class="about__grid">
       <div class="about__media" data-reveal>
         <div class="avatar" id="avatar">
-          <!-- src is set from config.js, so nothing is requested until a photo exists -->
-          <img alt="Allord Archard" id="avatarImg" />
+          <!-- sources are set from config.js, so nothing is requested until a photo exists -->
+          <picture>
+            <source id="avatarWebp" type="image/webp" />
+            <img id="avatarImg" width="698" height="843" decoding="async"
+                 alt="Allord Archard, full-stack developer" />
+          </picture>
           <span class="avatar__fallback" aria-hidden="true">AA</span>
         </div>
         <ul class="about__facts">
