@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kakaallord.github.io/me-portifolio/sitemap.xml

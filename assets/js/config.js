@@ -10,16 +10,10 @@ window.SITE_CONFIG = {
      --------------------------------------------------------
      Full international number, DIGITS ONLY.
      No "+", no spaces, no dashes, no leading zero.
-
-       Tanzania  +255 712 345 678  ->  "255712345678"
-       Kenya     +254 712 345 678  ->  "254712345678"
-       UK        +44 7700 900123   ->  "447700900123"
-       US        +1 (415) 555-0123 ->  "14155550123"
-
-     Leave it as "" and every WhatsApp button politely tells
-     you it still needs a number instead of opening a broken chat.
-
      Currently set to +255 795 977 630.
+
+     Leave it as "" and every WhatsApp button politely says the
+     number is missing instead of opening a broken chat.
   -------------------------------------------------------- */
   whatsappNumber: "255795977630",
 
@@ -28,24 +22,35 @@ window.SITE_CONFIG = {
 
   /* --------------------------------------------------------
      LINKS
-     Any link left as "" is hidden from the page rather than
-     rendered as a dead "#" — so add LinkedIn when you want it.
+     Anything left as "" is removed from the page rather than
+     rendered as a dead link.
   -------------------------------------------------------- */
   email:    "allordarchard99@gmail.com",
   github:   "https://github.com/kakaAllord",
   linkedin: "",
 
   /* --------------------------------------------------------
+     YOUR PHOTO  (optional, but worth adding)
+     --------------------------------------------------------
+     Drop a square-ish photo into assets/img/ and point at it:
+
+         photo: "assets/img/allord.jpg",
+
+     Leave it as "" and the About section shows an "AA" monogram
+     instead — no broken image, no 404 in the console.
+  -------------------------------------------------------- */
+  photo: "",
+
+  /* --------------------------------------------------------
      HERO TYPEWRITER
      Each phrase types itself out, holds, then deletes.
   -------------------------------------------------------- */
   typedPhrases: [
-    "firmware that runs for months on one battery.",
-    "computer vision that keeps up with the conveyor.",
-    "agentic AI that actually calls the right tool.",
-    "C++ close to the metal.",
-    "TypeScript interfaces that feel alive.",
-    "systems that sense, decide and act."
+    "web apps that ship on time.",
+    "APIs that stay up.",
+    "dashboards people actually use.",
+    "AI features that earn their keep.",
+    "the whole thing, front to back."
   ],
 
   /* --------------------------------------------------------
@@ -55,26 +60,32 @@ window.SITE_CONFIG = {
   -------------------------------------------------------- */
   terminalLines: [
     { type: "cmd",  text: "whoami" },
-    { type: "out",  text: "allord_archard // embedded systems + software" },
-    { type: "cmd",  text: "make flash TARGET=stm32f4" },
-    { type: "ok",   text: "build ok  -  flash 128.4 kB  -  ram 24.1 kB" },
-    { type: "ok",   text: "device programmed, resetting..." },
-    { type: "cmd",  text: "python deploy_model.py --edge" },
-    { type: "out",  text: "quantising yolov8n -> int8 ......... done" },
-    { type: "ok",   text: "inference 28 ms/frame  -  mAP 0.91" },
-    { type: "cmd",  text: "npm run dev" },
-    { type: "out",  text: "dashboard live on :5173  -  ws connected" },
-    { type: "warn", text: "status: open to interesting problems" },
+    { type: "out",  text: "allord_archard // full-stack developer" },
+    { type: "cmd",  text: "npm run build" },
+    { type: "ok",   text: "built in 4.2s  -  bundle 142 kB" },
+    { type: "cmd",  text: "pytest -q" },
+    { type: "ok",   text: "48 passed in 3.1s" },
+    { type: "cmd",  text: "docker compose up -d" },
+    { type: "out",  text: "api ok   worker ok   db ok" },
+    { type: "cmd",  text: "git push origin main" },
+    { type: "ok",   text: "deployed to production" },
+    { type: "warn", text: "status: open for freelance work" },
     { type: "cmd",  text: "" }
   ],
 
   /* --------------------------------------------------------
      BOOT SCREEN (the loader)
+
+     Deliberately short — the whole sequence runs in about two
+     seconds, and a click skips it. Adding steps makes it longer,
+     so keep this list to four or five at most.
   -------------------------------------------------------- */
-  bootLines: [
-    "init system clock ......... ok",
-    "mount /dev/portfolio ...... ok",
-    "load allord.archard ....... ok",
-    "start render loop ......... ok"
+  bootCommand: "./launch --portfolio",
+
+  bootSteps: [
+    "starting services",
+    "loading assets",
+    "warming up ui",
+    "allord.archard"
   ]
 };

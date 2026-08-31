@@ -1,0 +1,13 @@
+{
+  "name": "Allord Archard — Full-Stack Developer",
+  "short_name": "Allord Archard",
+  "description": "Freelance full-stack developer. Web apps end to end: interface, API and infrastructure.",
+  "start_url": "/me-portifolio/",
+  "scope": "/me-portifolio/",
+  "display": "standalone",
+  "background_color": "#05070c",
+  "theme_color": "#05070c",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
