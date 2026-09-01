@@ -37,9 +37,9 @@ window.SITE_CONFIG = {
      photo      the fallback every browser understands (jpg/png)
      photoWebp  optional smaller version modern browsers prefer
 
-     Both are generated from assets/img/allord-photo.png, the
-     original you dropped in. Set photo to "" to go back to the
-     "AA" monogram — nothing is requested when it is empty.
+     Both are a square headshot crop of "Allord Archard Image.png",
+     sized for the round frame in About. Set photo to "" to go back
+     to the "AA" monogram — nothing is requested when it is empty.
   -------------------------------------------------------- */
   photo:     "assets/img/allord.jpg",
   photoWebp: "assets/img/allord.webp",

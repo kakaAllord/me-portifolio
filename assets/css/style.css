@@ -587,17 +587,17 @@ html[data-theme="light"] .i-moon { display: block; }
   margin-top: 2.4rem;
 }
 
-/* 4:5 portrait — a square crop would cut the top of the head and the hands
-   off a standing photo. The source is 698x843 (0.83), so cover trims only a
-   sliver from the sides. */
+/* Round frame. The photo is already cropped square to a headshot, so cover
+   has nothing left to trim and the face sits where it should in the circle. */
 .avatar {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  aspect-ratio: 4 / 5;
-  border-radius: 20px;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-hi);
+  box-shadow: 0 0 0 7px var(--accent-soft);   /* soft ring around the circle */
   background: linear-gradient(150deg, var(--accent-soft), var(--surface));
   display: grid; place-items: center;
 }
@@ -606,7 +606,7 @@ html[data-theme="light"] .i-moon { display: block; }
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center top;   /* never crop the face */
+  object-position: center;
 }
 .avatar__fallback {
   font-family: var(--mono);
