@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Allord Archard — portfolio
+   Allord Archard portfolio
    Vanilla JS. No dependencies.
 
      boot()        loading sequence
@@ -31,7 +31,7 @@
      A small terminal that boots the site: the command types itself,
      each step reports back with a dot-leader and a green "ok", and a
      meter counts up alongside. A click or any key skips straight to the
-     end — a loader nobody can escape is just a wall.
+     end; a loader nobody can escape is just a wall.
 
      T below is the whole budget. With the default 20-character command
      and four steps it runs to about four seconds:
@@ -188,7 +188,7 @@
   }
 
   /* ====================== BACKGROUND ======================
-     A slow node graph. Deliberately sparse — it should read as texture,
+     A slow node graph. Deliberately sparse; it should read as texture,
      not as something competing with the content.
      ====================================================== */
   function network() {
@@ -451,7 +451,7 @@
     if (!img) return;
 
     // no photo configured: drop the <picture> before it requests anything, so
-    // there is no 404 in the console — the monogram behind it shows instead
+    // there is no 404 in the console; the monogram behind it shows instead
     if (!CFG.photo) {
       var pic = img.parentNode;
       (pic && pic.tagName === 'PICTURE' ? pic : img).remove();
@@ -485,7 +485,7 @@
         a.href = '#contact';
         a.addEventListener('click', function (e) {
           e.preventDefault();
-          toast('WhatsApp number not set yet — add it in assets/js/config.js');
+          toast('WhatsApp number not set yet; add it in assets/js/config.js');
         });
       }
     });

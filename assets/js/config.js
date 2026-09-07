@@ -1,5 +1,5 @@
 /* ============================================================
-   EDIT THIS FILE — everything personal lives here.
+   EDIT THIS FILE; everything personal lives here.
    Nothing else needs touching to make the site yours.
    ============================================================ */
 
@@ -18,9 +18,9 @@ window.SITE_CONFIG = {
   whatsappNumber: "255795977630",
 
   /* The message that is already typed for the visitor. Its job is to open a
-     working conversation, not just say hello — so it names a project and
+     working conversation, not just say hello, so it names a project and
      asks for the next step. */
-  whatsappMessage: "Hey Allord! Just saw your portfolio. I've got a project I'd like us to work on — are you available?",
+  whatsappMessage: "Hey Allord! Just saw your portfolio. I've got a project I'd like us to work on. Are you available?",
 
   /* --------------------------------------------------------
      LINKS
@@ -39,7 +39,7 @@ window.SITE_CONFIG = {
 
      Both are a square headshot crop of "Allord Archard Image.png",
      sized for the round frame in About. Set photo to "" to go back
-     to the "AA" monogram — nothing is requested when it is empty.
+     to the "AA" monogram; nothing is requested when it is empty.
   -------------------------------------------------------- */
   photo:     "assets/img/allord.jpg",
   photoWebp: "assets/img/allord.webp",
@@ -65,7 +65,7 @@ window.SITE_CONFIG = {
     { type: "cmd",  text: "whoami" },
     { type: "out",  text: "allord_archard // full-stack developer" },
     { type: "cmd",  text: "npm run build" },
-    { type: "ok",   text: "built in 4.2s  -  bundle 142 kB" },
+    { type: "ok",   text: "built in 4.2s   bundle 142 kB" },
     { type: "cmd",  text: "pytest -q" },
     { type: "ok",   text: "48 passed in 3.1s" },
     { type: "cmd",  text: "docker compose up -d" },
@@ -80,7 +80,7 @@ window.SITE_CONFIG = {
      BOOT SCREEN (the loader)
 
      The sequence runs to about four seconds, and a click or any
-     key skips it. Each extra step adds roughly half a second —
+     key skips it. Each extra step adds roughly half a second;
      the pacing itself lives in the T block at the top of main.js.
   -------------------------------------------------------- */
   bootCommand: "./launch --portfolio",

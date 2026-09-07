@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Allord Archard — portfolio
+   Allord Archard portfolio
    Hand-written CSS. No framework, no build step.
 
    1. Tokens        5. Hero
@@ -474,7 +474,7 @@ html[data-theme="light"] .i-moon { display: block; }
   margin-top: 0.25rem;
 }
 
-/* the ask, right under the name — the second thing anyone reads */
+/* the ask, right under the name; the second thing anyone reads */
 .hero__pitch {
   font-size: clamp(1.05rem, 2.1vw, 1.32rem);
   font-weight: 600;
