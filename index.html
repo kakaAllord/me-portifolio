@@ -44,6 +44,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/visuals.css" />
+<link rel="stylesheet" href="assets/css/projects.css" />
 
 <!-- Structured data. Everything here is stated on the page itself. -->
 <script type="application/ld+json">
@@ -179,7 +181,7 @@
     <nav class="nav__links" id="navLinks" aria-label="Primary">
       <a href="#about"    data-cursor="link">About</a>
       <a href="#services" data-cursor="link">What I do</a>
-      <a href="#work"     data-cursor="link">Work</a>
+      <a href="#work"     data-cursor="link">Projects</a>
       <a href="#contact" class="nav__cta" data-cursor="link">Let&#39;s talk</a>
     </nav>
 
@@ -203,7 +205,7 @@
       <p class="eyebrow" data-reveal><span class="dot"></span> Available for freelance work</p>
 
       <h1 class="hero__title" data-reveal data-reveal-delay="60">
-        <span class="hero__name">Allord Archard</span>
+        <span class="hero__name" data-split>Allord Archard</span>
         <span class="hero__role grad">Full-stack developer</span>
       </h1>
 
@@ -216,8 +218,8 @@
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.04 2C6.6 2 2.18 6.42 2.18 11.86c0 1.74.46 3.44 1.32 4.94L2 22l5.34-1.4a9.8 9.8 0 004.7 1.2h.01c5.44 0 9.86-4.42 9.86-9.86 0-2.63-1.03-5.11-2.89-6.97A9.8 9.8 0 0012.04 2zm5.43 12.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
           <span>Start a conversation</span>
         </a>
-        <a class="btn btn--ghost" href="#work" data-cursor="link">
-          <span>See the work</span>
+        <a class="btn btn--ghost magnetic" href="#work" data-cursor="link">
+          <span>See my projects</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -252,6 +254,16 @@
   </div>
 </section>
 
+<!-- ============ STACK STRIP ============ -->
+<div class="marquee" aria-hidden="true"><div class="marquee__track"><span>TypeScript<i></i>React<i></i>Next.js<i></i>Node.js<i></i>NestJS<i></i>Python<i></i>PostgreSQL<i></i>Flutter<i></i>Rust<i></i>Electron<i></i>Docker<i></i>AI / ML<i></i></span><span>TypeScript<i></i>React<i></i>Next.js<i></i>Node.js<i></i>NestJS<i></i>Python<i></i>PostgreSQL<i></i>Flutter<i></i>Rust<i></i>Electron<i></i>Docker<i></i>AI / ML<i></i></span></div></div>
+
+<!-- ============ STATEMENT ============ -->
+<section class="statement" aria-label="What I do, in one line">
+  <div class="container">
+    <p class="scrub" data-scrub data-scrub-hot="every,day,twelve">I take an idea from the first conversation to something people use every day: the screens, the API, the database and the deploy. Twelve of them are below, each with its own page.</p>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section class="section" id="about">
   <div class="container">
@@ -269,8 +281,8 @@
           <span class="avatar__fallback" aria-hidden="true">AA</span>
         </div>
         <ul class="about__facts">
-          <li><b>3+</b><span>years building</span></li>
-          <li><b>12+</b><span>projects shipped</span></li>
+          <li><b data-count="3" data-suffix="+">3+</b><span>years building</span></li>
+          <li><b data-count="12" data-suffix="+">12+</b><span>projects shipped</span></li>
         </ul>
       </div>
 
@@ -308,7 +320,7 @@
 
     <div class="services__grid">
 
-      <article class="card service" data-reveal>
+      <article class="card service spot" data-reveal>
         <span class="service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M2.5 8.5h19M8 21h8"/></svg>
         </span>
@@ -317,7 +329,7 @@
         <ul class="pills"><li>React</li><li>TypeScript</li><li>Next.js</li><li>Tailwind</li></ul>
       </article>
 
-      <article class="card service" data-reveal data-reveal-delay="80">
+      <article class="card service spot" data-reveal data-reveal-delay="80">
         <span class="service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>
         </span>
@@ -326,7 +338,7 @@
         <ul class="pills"><li>Node.js</li><li>FastAPI</li><li>Postgres</li><li>Docker</li></ul>
       </article>
 
-      <article class="card service" data-reveal data-reveal-delay="160">
+      <article class="card service spot" data-reveal data-reveal-delay="160">
         <span class="service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg>
         </span>
@@ -335,7 +347,7 @@
         <ul class="pills"><li>LLM agents</li><li>RAG</li><li>Computer vision</li><li>Python</li></ul>
       </article>
 
-      <article class="card service" data-reveal data-reveal-delay="240">
+      <article class="card service spot" data-reveal data-reveal-delay="240">
         <span class="service__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="1.6"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg>
         </span>
@@ -348,61 +360,211 @@
   </div>
 </section>
 
-<!-- ============ WORK ============ -->
+<!-- ============ WORK ============
+     The cards between the projects:* markers are generated by
+     tools/build-projects.mjs from tools/projects.mjs. Edit there.
+     ============================== -->
 <section class="section" id="work">
   <div class="container">
-    <h2 class="section-title" data-reveal><i>03</i> Selected work</h2>
-    <p class="section-lede" data-reveal>A sample of the kind of thing I build.</p>
+    <div class="work__head">
+      <div>
+        <h2 class="section-title" data-reveal><i>03</i> Projects</h2>
+        <p class="section-lede" data-reveal>Real products I have designed, built and shipped: <!-- projects:count -->12 of them, each with its own page. Open one to see how it works.</p>
+      </div>
+      <span class="work__hint" data-reveal>Keep scrolling <i></i></span>
+    </div>
+  </div>
 
-    <div class="work__grid">
-
-      <article class="card work-card work-card--feature" data-reveal>
-        <div class="work-card__top">
-          <span class="work-card__badge">Featured</span>
+  <div class="hscroll" data-hscroll>
+    <div class="hscroll__sticky">
+      <div class="hscroll__track">
+        <!-- projects:featured:start -->
+        <a class="fcard" href="projects/kakapips/" style="--p:#f5b83d" data-cursor="link">
+          <div class="fcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i><span>kakapips.vercel.app</span></div><img src="assets/img/projects/kakapips/chart.webp" alt="" loading="lazy" decoding="async" /></figure></div></div>
+          <div class="fcard__body">
+            <span class="fcard__num">01</span>
+            <span class="fcard__cat">Trading software<em>Live</em></span>
+            <h3>Kakapips</h3>
+            <p>A charting workstation for gold traders. In the browser, on the desktop, and fully offline.</p>
+            <ul class="pills"><li>Next.js</li><li>TypeScript</li><li>Canvas 2D</li><li>Electron</li></ul>
+            <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="fcard" href="projects/magari/" style="--p:#14b8a6" data-cursor="link">
+          <div class="fcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-flow" data-v="flow">
+        <div class="v-flow__track">
+          <div class="v-flow__line"><span></span></div>
+          <div class="v-flow__node"><span class="v-flow__dot">1</span><b>Dereva</b><small>Driver asks for fuel</small></div><div class="v-flow__node"><span class="v-flow__dot">2</span><b>Meneja</b><small>Manager approves</small></div><div class="v-flow__node"><span class="v-flow__dot">3</span><b>Kiwanda</b><small>Factory authorises</small></div><div class="v-flow__node"><span class="v-flow__dot">4</span><b>Mhasibu</b><small>Accountant pays</small></div>
         </div>
-        <h3>Realtime Operations Dashboard</h3>
-        <p>
-          A TypeScript dashboard for a fleet of live devices: streaming charts, role-based access
-          and an offline mode that reconciles cleanly when the connection returns. React front end,
-          Node and Postgres behind it, deployed with Docker.
-        </p>
-        <ul class="pills"><li>React</li><li>TypeScript</li><li>Node.js</li><li>Postgres</li><li>WebSockets</li></ul>
-        <div class="work-card__links">
-          <a href="#" data-cursor="link">View project &rarr;</a>
+        <div class="v-flow__card"><i>⛽</i><div><b>Mafuta · T 482 DKL</b><span>120 L × TSh 3,150 = TSh 378,000</span></div>
+          <span class="v-flow__status" data-steps="Imeombwa|Imekubaliwa|Imeidhinishwa|Imelipwa ✓">Imeombwa</span></div>
+      </div></figure></div></div>
+          <div class="fcard__body">
+            <span class="fcard__num">02</span>
+            <span class="fcard__cat">Business web app<em>Live</em></span>
+            <h3>Magari</h3>
+            <p>A transport company&#39;s money, cars and fuel in one place, in Swahili.</p>
+            <ul class="pills"><li>Next.js</li><li>TypeScript</li><li>PostgreSQL</li><li>Pusher</li></ul>
+            <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="fcard" href="projects/irca/" style="--p:#f08c4a" data-cursor="link">
+          <div class="fcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-flow" data-v="flow">
+        <div class="v-flow__track">
+          <div class="v-flow__line"><span></span></div>
+          <div class="v-flow__node"><span class="v-flow__dot">1</span><b>Form</b><small>New member registers</small></div><div class="v-flow__node"><span class="v-flow__dot">2</span><b>API</b><small>Checks every permission</small></div><div class="v-flow__node"><span class="v-flow__dot">3</span><b>Portal</b><small>Pastors and departments</small></div><div class="v-flow__node"><span class="v-flow__dot">4</span><b>Finance</b><small>Records and statements</small></div>
         </div>
-      </article>
+        <div class="v-flow__card"><i>⛪</i><div><b>New member · Grace Mollel</b><span>Registration form → Membership</span></div>
+          <span class="v-flow__status" data-steps="Submitted|Verified|Welcomed|Recorded ✓">Submitted</span></div>
+      </div></figure></div></div>
+          <div class="fcard__body">
+            <span class="fcard__num">03</span>
+            <span class="fcard__cat">Organisation platform<em>Live</em></span>
+            <h3>IRCA Church System</h3>
+            <p>Membership, departments and finance for a growing church, in three apps that share one API.</p>
+            <ul class="pills"><li>NestJS</li><li>Next.js 16</li><li>PostgreSQL 18</li><li>Prisma</li></ul>
+            <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="fcard" href="projects/tafes/" style="--p:#e11d48" data-cursor="link">
+          <div class="fcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i><span>tafes.vercel.app</span></div><img src="assets/img/projects/tafes/desktop.webp" alt="" loading="lazy" decoding="async" /></figure></div></div>
+          <div class="fcard__body">
+            <span class="fcard__num">04</span>
+            <span class="fcard__cat">Web app<em>Live</em></span>
+            <h3>TAFES Registration</h3>
+            <p>Student sign-ups for a campus fellowship, with SMS-ready contacts and an admin dashboard.</p>
+            <ul class="pills"><li>Next.js 16</li><li>TypeScript</li><li>Tailwind CSS 4</li><li>Prisma</li></ul>
+            <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="fcard" href="projects/light/" style="--p:#60a5fa" data-cursor="link">
+          <div class="fcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i><span>Light · Sunday service</span></div><img src="assets/img/projects/light/s2.webp" alt="" loading="lazy" decoding="async" /></figure></div></div>
+          <div class="fcard__body">
+            <span class="fcard__num">05</span>
+            <span class="fcard__cat">Desktop app</span>
+            <h3>Light</h3>
+            <p>Worship presentation for churches: lyrics, scripture, slides and video on the projector.</p>
+            <ul class="pills"><li>Flutter</li><li>Dart</li><li>C++</li><li>FFmpeg</li></ul>
+            <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a class="fcard" href="projects/ferry/" style="--p:#2dd4bf" data-cursor="link">
+          <div class="fcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-radar v-grid" data-v="radar">
+        <div class="v-radar__field">
+          <span class="v-radar__ring"></span><span class="v-radar__ring"></span><span class="v-radar__ring"></span>
+          <div class="v-radar__sweep"></div>
+          <span class="v-radar__dev" style="left:69.0%;top:17.1%;--dl:0.0s"><i></i>Neema&#39;s phone</span><span class="v-radar__dev" style="left:82.8%;top:72.9%;--dl:0.6s"><i></i>Office PC</span><span class="v-radar__dev" style="left:10.5%;top:35.6%;--dl:1.2s"><i></i>Laptop</span><span class="v-radar__dev" style="left:37.4%;top:68.0%;--dl:1.8s"><i></i>Tablet</span>
+          <span class="v-radar__packet" style="--x:69.0%;--y:17.1%"></span>
+          <span class="v-radar__me">YOU</span>
+        </div>
+        <span class="v-radar__badge">TLS 1.3 · paired</span>
+        <div class="v-radar__card">
+          <div class="v-radar__file">holiday-video.mp4 <span>1.2 GB</span></div>
+          <div class="v-radar__prog"><span></span></div>
+          <div class="v-radar__ok">✓ BLAKE3 verified, saved</div>
+        </div>
+      </div></figure></div></div>
+          <div class="fcard__body">
+            <span class="fcard__num">06</span>
+            <span class="fcard__cat">Networking software</span>
+            <h3>Ferry</h3>
+            <p>Send files and folders between your devices over the local network. Fast, verified and encrypted.</p>
+            <ul class="pills"><li>Rust</li><li>Tauri</li><li>Flutter</li><li>TLS 1.3</li></ul>
+            <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <!-- projects:featured:end -->
+      </div>
+      <div class="hscroll__foot"><span class="hscroll__count">01 / 06</span><div class="hscroll__bar"><span></span></div><span>Featured</span></div>
+    </div>
+  </div>
 
-      <article class="card work-card" data-reveal data-reveal-delay="80">
-        <h3>Agentic Support Assistant</h3>
-        <p>
-          An assistant that answers from a company&#39;s own documents, calls internal tools when it
-          needs to and hands off to a human when it should. Python API, typed tool schemas, full
-          audit trail.
-        </p>
-        <ul class="pills"><li>Python</li><li>FastAPI</li><li>LLM agents</li><li>RAG</li></ul>
-        <div class="work-card__links"><a href="#" data-cursor="link">View project &rarr;</a></div>
-      </article>
-
-      <article class="card work-card" data-reveal data-reveal-delay="160">
-        <h3>Vision Inspection Service</h3>
-        <p>
-          An image pipeline that flags defects from a camera feed in real time, wrapped in a simple
-          web UI so the people on the floor can actually use it.
-        </p>
-        <ul class="pills"><li>Python</li><li>OpenCV</li><li>Docker</li><li>React</li></ul>
-        <div class="work-card__links"><a href="#" data-cursor="link">View project &rarr;</a></div>
-      </article>
-
-      <article class="card work-card" data-reveal data-reveal-delay="240">
-        <h3>Connected Device Platform</h3>
-        <p>
-          End to end: firmware on the device, an API to collect what it sends, and a dashboard to
-          make sense of it. The kind of project that normally needs two contractors.
-        </p>
-        <ul class="pills"><li>C++</li><li>MQTT</li><li>Node.js</li><li>React</li></ul>
-        <div class="work-card__links"><a href="#" data-cursor="link">View project &rarr;</a></div>
-      </article>
-
+  <div class="container">
+    <h3 class="more__title" data-reveal>More builds</h3>
+    <div class="pgrid">
+      <!-- projects:more:start -->
+      <a class="pcard spot" href="projects/shoprex/" style="--p:#8b5cf6" data-reveal data-reveal-delay="0" data-cursor="link">
+        <div class="pcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-pos v-grid" data-v="pos">
+        <div class="v-pos__float v-pos__float--a">Mauzo ya leo<b>TSh 1,284,500</b></div>
+        <div class="v-pos__float v-pos__float--b">Stoo inaisha<b>Sukari 1kg · 6 zimebaki</b></div>
+        <div class="v-phone"><div class="v-phone__screen">
+          <div class="v-pos__head">Duka la Mama Neema<b>Mauzo mapya</b></div>
+          <div class="v-pos__scan"></div>
+          <div class="v-pos__rows"><div class="v-pos__row" data-price="6000"><span>Sukari 1kg × 2</span><span>6,000</span></div><div class="v-pos__row" data-price="4200"><span>Unga 2kg</span><span>4,200</span></div><div class="v-pos__row" data-price="7500"><span>Mafuta 1L</span><span>7,500</span></div><div class="v-pos__row" data-price="2800"><span>Sabuni</span><span>2,800</span></div></div>
+          <div class="v-pos__total">Jumla <b data-total>TSh 0</b></div>
+          <div class="v-pos__btn" data-done="Imeuzwa ✓">Uza</div>
+        </div></div>
+      </div></figure></div></div>
+        <div class="pcard__body">
+          <span class="fcard__cat">Retail platform</span>
+          <h3>Shoprex</h3>
+          <p>Turns an Android phone into a fast till and stock book for Tanzanian shops.</p>
+          <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="pcard spot" href="projects/lockin/" style="--p:#e5e7eb" data-reveal data-reveal-delay="80" data-cursor="link">
+        <div class="pcard__visual"><div class="thumb thumb--phone"><figure class="frame frame--phone"><img src="assets/img/projects/lockin/home.webp" alt="" loading="lazy" decoding="async" /></figure></div></div>
+        <div class="pcard__body">
+          <span class="fcard__cat">Android app</span>
+          <h3>Lockin</h3>
+          <p>A minimalist Android launcher with limits you cannot talk yourself out of.</p>
+          <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="pcard spot" href="projects/laura/" style="--p:#fb7185" data-reveal data-reveal-delay="160" data-cursor="link">
+        <div class="pcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-flip" data-v="flip">
+        <div class="v-flip__label"><i></i><b>Focus</b> session 2 of 4</div>
+        <div class="v-flip__row"><div class="fc"></div><div class="fc"></div><span class="v-flip__colon"></span><div class="fc"></div><div class="fc"></div></div>
+        <div class="v-flip__bar"><span></span></div>
+        <div class="v-flip__chips"><span>Countdown</span><span class="on">Pomodoro</span><span>Stopwatch</span></div>
+      </div></figure></div></div>
+        <div class="pcard__body">
+          <span class="fcard__cat">Productivity app</span>
+          <h3>Laura</h3>
+          <p>A calm study timer with a mechanical flip clock. Offline, no accounts.</p>
+          <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="pcard spot" href="projects/nyaraka/" style="--p:#3b82f6" data-reveal data-reveal-delay="0" data-cursor="link">
+        <div class="pcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-docs v-grid" data-v="docs">
+        <div class="v-docs__fan"><div class="v-doc" style="--tag:#2b6cd9;--r:-14deg;--tx:-9cqw;--dl:0.0s"><b>DOCX</b></div><div class="v-doc" style="--tag:#16a34a;--r:-6deg;--tx:-4cqw;--dl:1.5s"><b>XLSX</b></div><div class="v-doc" style="--tag:#ea580c;--r:2deg;--tx:1cqw;--dl:3.0s"><b>PPTX</b></div><div class="v-doc" style="--tag:#475569;--r:9deg;--tx:6cqw;--dl:4.5s"><b>MD</b></div><div class="v-doc" style="--tag:#dc2626;--r:16deg;--tx:11cqw;--dl:6.0s"><b>PDF</b></div></div>
+        <div class="v-docs__panel">
+          <div class="v-docs__row"><b style="background:#2b6cd9">DOCX</b><em>→</em><b style="background:#dc2626">PDF</b></div>
+          <div class="v-docs__prog"><span></span></div>
+          <div class="v-docs__done">✓ Saved to your library</div>
+          <div class="v-docs__scripts"><span lang="ar">العربية</span><span lang="zh" style="--dl:-1s">中文</span><span lang="hi" style="--dl:-2s">हिन्दी</span><span lang="am" style="--dl:-3s">አማርኛ</span><span lang="he" style="--dl:-4s">עברית</span></div>
+        </div>
+      </div></figure></div></div>
+        <div class="pcard__body">
+          <span class="fcard__cat">Android app</span>
+          <h3>Nyaraka</h3>
+          <p>Open any document on your phone, keep it in one library, and convert it to what you need.</p>
+          <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="pcard spot" href="projects/gold-lab/" style="--p:#e3b341" data-reveal data-reveal-delay="80" data-cursor="link">
+        <div class="pcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-eq" data-v="eq">
+        <div class="v-eq__note">best of 170 rules<br><b>+0.354 R</b> a trade on the holdout<br>only 71 trades, lost on validation<br><s>✕ rejected</s></div>
+      </div></figure></div></div>
+        <div class="pcard__body">
+          <span class="fcard__cat">Data and quant research</span>
+          <h3>Gold Research Lab</h3>
+          <p>Twenty-three years of gold prices, collected, cleaned and tested by a study built to say no.</p>
+          <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="pcard spot" href="projects/eleguard/" style="--p:#84cc16" data-reveal data-reveal-delay="160" data-cursor="link">
+        <div class="pcard__visual"><div class="thumb"><figure class="frame frame--window"><div class="frame__bar"><i></i><i></i><i></i></div><div class="v v-seis" data-v="seis">
+        <div class="v-seis__alert"><b>Elephants near S-02</b>Alert sent to the village and the ranger post. Drone on its way.</div>
+      </div></figure></div></div>
+        <div class="pcard__body">
+          <span class="fcard__cat">IoT platform, team project</span>
+          <h3>EleGuard</h3>
+          <p>Seismic sensors that hear elephants coming, warn the village and send a drone.</p>
+          <span class="fcard__go">Open the project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+        <!-- projects:more:end -->
     </div>
   </div>
 </section>
@@ -467,6 +629,7 @@
 </a>
 
 <script src="assets/js/config.js"></script>
+<script src="assets/js/visuals.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
