@@ -15,4 +15,27 @@ Available for freelance work.
 This is the source for my portfolio site. Plain HTML, CSS and JavaScript. No framework,
 no build step, no dependencies. Open `index.html` and it runs.
 
-Everything editable lives in `assets/js/config.js`.
+Live at https://kakaallord.github.io/me-portifolio/, with a page per project under
+`projects/<name>/`.
+
+## Editing
+
+- Contact details, the hero typewriter and terminal, the boot screen: `assets/js/config.js`.
+- The projects: `tools/projects.mjs`, then run `node tools/build-projects.mjs`. That rewrites
+  every `projects/<name>/index.html`, the project cards in `index.html` (between the
+  `projects:*` markers) and `sitemap.xml`. Commit the generated files; GitHub Pages serves
+  them as they are.
+- Screenshots live in `assets/img/projects/<name>/` as WebP.
+
+## Layout
+
+| Path | What it is |
+|---|---|
+| `assets/css/style.css` | Tokens, base, home page sections |
+| `assets/css/projects.css` | Device frames, project cards, the pinned gallery, project pages |
+| `assets/css/visuals.css` | The animated scenes used where a project has no screenshot |
+| `assets/js/main.js` | Boot, theme, cursor, nav, reveals and the scroll-driven motion |
+| `assets/js/visuals.js` | What moves inside those scenes |
+| `tools/` | Project data and the page generator |
+
+Every effect respects `prefers-reduced-motion`.
