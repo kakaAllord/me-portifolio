@@ -14,6 +14,10 @@
      avatar()      falls back to a monogram when no photo is present
      contact()     WhatsApp links with a pre-written message
      misc()        floating button, year
+     motion()      split titles, scrub text, counters, spotlight,
+                   magnetic buttons, pinned gallery, showcase tilt,
+                   story, parallax, marquee (all driven from one
+                   scroll loop; see the MOTION block)
    ========================================================================== */
 
 (function () {
@@ -283,6 +287,7 @@
     var anchors = $$('#navLinks a[href^="#"]');
     var sections = anchors.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean);
     var lastY = scrollY;
+    if (!header) return;
 
     function onScroll() {
       var y = scrollY;
@@ -337,7 +342,7 @@
 
   /* ====================== REVEAL ====================== */
   function reveal() {
-    var items = $$('[data-reveal]');
+    var items = $$('[data-reveal], [data-split]');
     items.forEach(function (el) {
       el.style.setProperty('--d', (el.getAttribute('data-reveal-delay') || 0) + 'ms');
     });
@@ -477,8 +482,10 @@
     var href = number ? 'https://wa.me/' + number + '?text=' + encodeURIComponent(message) : null;
 
     $$('[data-whatsapp]').forEach(function (a) {
+      // a project page can pre-write its own message, naming the project
+      var own = a.getAttribute('data-wa-text');
       if (href) {
-        a.href = href;
+        a.href = own ? 'https://wa.me/' + number + '?text=' + encodeURIComponent(own) : href;
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
       } else {
@@ -537,6 +544,267 @@
     if (year) year.textContent = new Date().getFullYear();
   }
 
+  /* ====================== MOTION ======================
+     Everything that moves with the page. One passive scroll listener
+     schedules one frame; each effect registers an update(y) that reads
+     layout it measured on resize, so nothing forces a reflow per frame.
+     Under reduced motion only the static parts (letters, words, numbers)
+     are set up, already in their final state.
+     ====================================================== */
+  var updaters = [];
+  var measures = [];
+  var lastScroll = -1;
+
+  function onFrame() {
+    var y = scrollY;
+    if (y !== lastScroll) {
+      for (var i = 0; i < updaters.length; i++) updaters[i](y);
+      lastScroll = y;
+    }
+  }
+  var queued = false;
+  function schedule() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; onFrame(); });
+  }
+  function remeasure() {
+    measures.forEach(function (m) { m(); });
+    lastScroll = -1;
+    onFrame();
+  }
+
+  // page offset of an element, independent of current transforms
+  function pageTop(el) {
+    var y = 0;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    return y;
+  }
+
+  /* letters: wrap each character so the title can rise in, word by word */
+  function split() {
+    $$('[data-split]').forEach(function (el) {
+      var text = el.textContent.trim();
+      var i = 0;
+      el.setAttribute('aria-label', text);
+      el.innerHTML = text.split(' ').map(function (word) {
+        return '<span class="w" aria-hidden="true">' + word.split('').map(function (c) {
+          return '<span class="ch" style="--i:' + (i++) + '">' + esc(c) + '</span>';
+        }).join('') + '</span>';
+      }).join(' ');
+      if (REDUCED) el.classList.add('in');
+    });
+  }
+
+  /* words: a paragraph that lights up word by word as it scrolls through */
+  function scrub() {
+    $$('[data-scrub]').forEach(function (el) {
+      var words = el.textContent.trim().split(/\s+/);
+      // numbers carry the accent, plus any words listed in data-scrub-hot
+      var extra = (el.getAttribute('data-scrub-hot') || '').toLowerCase().split(',');
+      el.innerHTML = words.map(function (w) {
+        var hot = /\d/.test(w) || extra.indexOf(w.toLowerCase().replace(/[.,:;"]/g, '')) > -1;
+        return '<span class="wd' + (hot ? ' hot' : '') + '">' + esc(w) + '</span>';
+      }).join(' ');
+      var spans = $$('.wd', el);
+      if (REDUCED) { spans.forEach(function (s) { s.classList.add('on'); }); return; }
+
+      var top = 0, h = 0;
+      measures.push(function () { top = pageTop(el); h = el.offsetHeight; });
+      updaters.push(function (y) {
+        // starts when the paragraph's top reaches 85% of the screen, done at 35%
+        var start = top - innerHeight * 0.85;
+        var end = top + h - innerHeight * 0.35;
+        var p = clamp((y - start) / (end - start), 0, 1);
+        var lit = Math.round(p * spans.length);
+        for (var i = 0; i < spans.length; i++) spans[i].classList.toggle('on', i < lit);
+      });
+    });
+  }
+
+  /* numbers: count up once, the first time they are seen */
+  function counters() {
+    var els = $$('[data-count]');
+    if (!els.length) return;
+    function fmt(n, el) { return Math.round(n).toLocaleString('en-US') + (el.getAttribute('data-suffix') || ''); }
+    if (REDUCED || !('IntersectionObserver' in window)) return;   // the HTML already holds the final value
+    els.forEach(function (el) { el.textContent = fmt(0, el); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.unobserve(en.target);
+        var el = en.target, to = +el.getAttribute('data-count'), t0 = performance.now(), dur = 1400;
+        (function tick(now) {
+          var p = clamp((now - t0) / dur, 0, 1);
+          el.textContent = fmt(to * (1 - Math.pow(1 - p, 4)), el);
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, { threshold: 0.6 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  /* pointer effects: a spotlight inside cards, buttons that lean toward the cursor */
+  function pointer() {
+    if (!FINE_POINTER || REDUCED) return;
+    document.addEventListener('pointermove', function (e) {
+      var card = e.target.closest && e.target.closest('.spot');
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
+
+    $$('.magnetic').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * 0.22;
+        var y = (e.clientY - r.top - r.height / 2) * 0.32;
+        b.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      });
+      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+    });
+
+    // the hero terminal leans gently toward the pointer
+    var panel = $('.hero__panel .terminal');
+    if (panel) {
+      panel.style.transition = 'transform 0.6s var(--ease), border-color 0.4s var(--ease)';
+      document.addEventListener('pointermove', function (e) {
+        if (scrollY > innerHeight) return;
+        var x = (e.clientX / innerWidth - 0.5), y = (e.clientY / innerHeight - 0.5);
+        panel.style.transform = 'perspective(1200px) rotateY(' + (x * 7) + 'deg) rotateX(' + (-y * 6) + 'deg)';
+      }, { passive: true });
+    }
+  }
+
+  /* the pinned gallery: vertical scroll drives the cards sideways */
+  function hscroll() {
+    var wrap = $('[data-hscroll]');
+    if (!wrap) return;
+    var track = $('.hscroll__track', wrap);
+    var bar = $('.hscroll__bar span', wrap);
+    var count = $('.hscroll__count', wrap);
+    var cards = $$('.fcard', track);
+    var top = 0, dist = 0, pinned = false;
+
+    measures.push(function () {
+      pinned = !REDUCED && innerWidth > 780 && innerHeight > 560;
+      wrap.classList.toggle('is-static', !pinned);
+      if (!pinned) { wrap.style.height = ''; track.style.transform = ''; return; }
+      dist = Math.max(0, track.scrollWidth - innerWidth);
+      wrap.style.height = (innerHeight + dist) + 'px';
+      top = pageTop(wrap);
+    });
+
+    updaters.push(function (y) {
+      if (!pinned) return;
+      var p = dist ? clamp((y - top) / dist, 0, 1) : 0;
+      track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+      if (bar) bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      if (count) {
+        var n = Math.min(cards.length, Math.round(p * (cards.length - 1)) + 1);
+        count.textContent = (n < 10 ? '0' : '') + n + ' / ' + (cards.length < 10 ? '0' : '') + cards.length;
+      }
+      // each card's visual drifts a little against the movement
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i], v = c.firstElementChild;
+        var mid = c.offsetLeft - p * dist + c.offsetWidth / 2 - innerWidth / 2;
+        v.style.setProperty('--dx', (mid * -0.05).toFixed(1) + 'px');
+      }
+    });
+  }
+
+  /* project hero: the device starts tipped back and settles flat */
+  function showcase() {
+    var el = $('[data-showcase] .pp-show__inner');
+    if (!el || REDUCED) return;
+    var top = 0;
+    measures.push(function () { top = pageTop(el); });
+    updaters.push(function (y) {
+      var p = clamp((y - (top - innerHeight * 0.95)) / (innerHeight * 0.75), 0, 1);
+      el.style.setProperty('--t', (1 - p).toFixed(3));
+    });
+  }
+
+  /* project story: whichever step sits in the middle of the screen picks the image */
+  function story() {
+    var root = $('[data-story]');
+    if (!root || !('IntersectionObserver' in window)) return;
+    var steps = $$('.story__step', root);
+    var imgs = $$('.story__stage .story__img', root);
+    var dots = $$('.story__dots span', root);
+    function show(i) {
+      steps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      imgs.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      dots.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    }
+    show(0);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) show(+en.target.getAttribute('data-step'));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach(function (s) { io.observe(s); });
+  }
+
+  /* gentle parallax: the glow drifts, screens float at their own pace */
+  function parallax() {
+    if (REDUCED) return;
+    var glow = $('.glow');
+    var items = $$('[data-parallax]').map(function (el) {
+      return { el: el, f: +el.getAttribute('data-parallax'), top: 0, h: 0 };
+    });
+    measures.push(function () {
+      items.forEach(function (it) { it.top = pageTop(it.el); it.h = it.el.offsetHeight; });
+    });
+    updaters.push(function (y) {
+      if (glow) glow.style.transform = 'translate3d(0,' + (y * -0.12).toFixed(1) + 'px,0)';
+      items.forEach(function (it) {
+        var d = (y + innerHeight / 2) - (it.top + it.h / 2);
+        it.el.style.setProperty('--py', (d * it.f).toFixed(1) + 'px');
+      });
+    });
+  }
+
+  /* marquee: drifts on its own, runs faster and leans while the page scrolls */
+  function marquee() {
+    var tracks = $$('.marquee__track');
+    if (!tracks.length || REDUCED) return;
+    var x = 0, vel = 0, prevY = scrollY;
+    (function loop() {
+      var dy = scrollY - prevY; prevY = scrollY;
+      vel += (dy - vel) * 0.1;
+      x -= 0.45 + Math.abs(vel) * 0.35;
+      tracks.forEach(function (t) {
+        var half = t.scrollWidth / 2;
+        if (half && -x >= half) x += half;
+        t.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
+        t.style.setProperty('--skew', clamp(-vel * 0.4, -10, 10).toFixed(2) + 'deg');
+      });
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  function motion() {
+    split();
+    scrub();
+    counters();
+    pointer();
+    hscroll();
+    showcase();
+    story();
+    parallax();
+    marquee();
+
+    remeasure();
+    addEventListener('scroll', schedule, { passive: true });
+    var rt;
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(remeasure, 120); });
+    // images and fonts change heights after load
+    addEventListener('load', remeasure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+  }
+
   /* ====================== GO ====================== */
   theme();
 
@@ -548,6 +816,7 @@
     avatar();
     contact();
     misc();
+    motion();
 
     boot().then(function () {
       reveal();
