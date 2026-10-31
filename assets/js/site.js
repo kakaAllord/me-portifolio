@@ -3,6 +3,7 @@
    Vanilla JS, no dependencies. Contact details come from config.js.
 
      nav()       hairline once scrolled, current section highlighted
+                 (in the top links and the phone tab bar)
      reveal()    sections rise in as they arrive
      filters()   Work grid: All / Web / Mobile / Desktop / Data
      counters()  numbers count up the first time they are seen
@@ -18,6 +19,7 @@
   var CFG = window.SITE_CONFIG || {};
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var IO = 'IntersectionObserver' in window;
+  var PHONE = window.matchMedia('(max-width: 720px)');   // mobile.css applies
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
@@ -38,8 +40,9 @@
     if (!bar) return;
     onScroll(function (y) { bar.classList.toggle('stuck', y > 8); });
 
-    var links = $$('.nav__links a[href^="#"]');
-    var targets = links.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean);
+    var links = $$('.nav__links a[href^="#"], .dock a[href^="#"]');
+    var targets = links.map(function (a) { return $(a.getAttribute('href')); }).filter(Boolean)
+      .filter(function (t, i, all) { return all.indexOf(t) === i; });
     if (!targets.length || !IO) return;
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -121,8 +124,11 @@
     if (REDUCED) { row.style.setProperty('--line-p', '100%'); steps.forEach(function (s) { s.classList.add('on'); }); return; }
     onScroll(function () {
       var r = row.getBoundingClientRect();
-      // 0 when the row enters at the bottom third, 1 when it reaches the upper third
-      var p = clamp((innerHeight * 0.85 - r.top) / (innerHeight * 0.5), 0, 1);
+      // 0 when the row enters at the bottom third, 1 when it reaches the upper third;
+      // on phones the steps stack, so the line follows the middle of the screen down them
+      var p = PHONE.matches
+        ? clamp((innerHeight * 0.6 - r.top) / r.height, 0, 1)
+        : clamp((innerHeight * 0.85 - r.top) / (innerHeight * 0.5), 0, 1);
       row.style.setProperty('--line-p', (p * 100).toFixed(1) + '%');
       steps.forEach(function (s, i) { s.classList.toggle('on', p >= i / steps.length + 0.02); });
     });
@@ -153,6 +159,7 @@
     if (!items.length || REDUCED) return;
     var speed = [-0.05, 0.09, 0.16];
     onScroll(function (y) {
+      if (PHONE.matches) { items.forEach(function (el) { el.style.transform = ''; }); return; }   // a sideways reel there
       if (y > innerHeight * 1.2) return;
       items.forEach(function (el, i) { el.style.transform = 'translate3d(0,' + (y * speed[i % 3]).toFixed(1) + 'px,0)'; });
     });
