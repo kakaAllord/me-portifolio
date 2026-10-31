@@ -1,7 +1,8 @@
 /* ==========================================================================
    Allord Archard portfolio
-   Hand-written CSS, no framework. Desktop first; one breakpoint keeps
-   smaller screens readable.
+   Hand-written CSS, no framework. Desktop first; section 10 adapts it for
+   tablets. Phones get their own design in mobile.css, which only loads
+   at 720px and below.
 
    Milk paper, warm ink, one deep green. Screens and scenes carry the
    colour; the page stays quiet around them so the work is what you see.
@@ -197,6 +198,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .nav__cta { display: flex; align-items: center; gap: 1.2rem; }
 .nav__status { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.86rem; color: var(--ink-2); }
 .nav .btn { height: 44px; padding: 0 1.2rem; font-size: 0.92rem; }
+.dock { display: none; }   /* the phone tab bar, shown by mobile.css */
 
 .hero { padding: calc(var(--nav-h) + clamp(3rem, 6vw, 5rem)) 0 clamp(3rem, 5vw, 4.5rem); position: relative; }
 .hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(2.5rem, 5vw, 5rem); align-items: center; }
@@ -565,16 +567,4 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .story__step { min-height: 0; opacity: 1; padding: 1rem 0 2.4rem; }
   .story__inline { display: block; margin-top: 1.4rem; }
 }
-@media (max-width: 720px) {
-  .wrap { width: calc(100% - 2.4rem); }
-  .nav__links { display: none; }
-  .nav__cta { margin-left: auto; }
-  .proof { grid-template-columns: repeat(2, auto); row-gap: 1.2rem; }
-  .collage { height: 380px; }
-  .grid, .features, .steps, .promise, .offer, .facts { grid-template-columns: minmax(0, 1fr); }
-  .grid .card--wide { grid-column: auto; }
-  .work__head { flex-direction: column; align-items: flex-start; }
-  .filters { overflow-x: auto; max-width: 100%; }
-  .pager { grid-template-columns: 1fr; }
-  .pager a + a { border-left: 0; padding-left: 0; text-align: left; border-top: 1px solid rgba(243, 239, 230, 0.1); }
-}
+/* phones: see mobile.css */
