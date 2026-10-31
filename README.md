@@ -33,8 +33,11 @@ Live at https://kakaallord.github.io/me-portifolio/, with a page per project und
 |---|---|
 | `assets/css/site.css` | Tokens, home page and project pages |
 | `assets/css/visuals.css` | The animated scenes used where a project has no screenshot |
+| `assets/css/mobile.css` | The phone design (720px and below): tab bar, swipe reels, work tiles, timeline |
 | `assets/js/site.js` | Nav, reveals, filters, counters, process line, project story, contact links |
 | `assets/js/visuals.js` | What moves inside those scenes |
 | `tools/` | Project data and the site generator |
 
-Built desktop first. Every effect respects `prefers-reduced-motion`.
+Built desktop first, with a separate phone design in `mobile.css` that only loads at 720px
+and below, so changes there never touch the laptop view. Every effect respects
+`prefers-reduced-motion`.
