@@ -5,6 +5,10 @@
    and sitemap.xml. The generated files are committed, so the site itself
    still has no build step.
 
+   kinds   filters on the home page: web, mobile, desktop, data
+   client  who it was built for, shown on the card and the page
+   wide    takes two columns in the home grid (order keeps rows full)
+
    hero / thumb, one of:
      { img: 'kakapips/chart.webp', bar: 'kakapips.vercel.app' }   window frame
      { phone: 'lockin/home.webp' }                                phone frame
@@ -13,54 +17,13 @@
    Copy style: plain words, no em dashes.
    ========================================================================== */
 
-export const featuredCount = 6;
 
 export const projects = [
   {
-    slug: 'kakapips',
-    name: 'Kakapips',
-    color: '#f5b83d',
-    category: 'Trading software',
-    platform: 'Web, Linux, Windows',
-    status: 'Live on the web, desktop builds released',
-    year: '2026',
-    tagline: 'A charting workstation for gold traders. In the browser, on the desktop, and fully offline.',
-    intro: 'Kakapips is a fast XAUUSD charting app. Split the screen into as many charts as you need, draw on them, then replay the market bar by bar to practise decisions without hindsight. It started as a web app and grew into a family: an offline desktop edition that carries 23 years of minute data in its own file format, and a training edition that draws research strategies straight onto the chart.',
-    links: [{ label: 'Open the live app', href: 'https://kakapips.vercel.app', live: true }],
-    stack: ['Next.js', 'TypeScript', 'Canvas 2D', 'Electron', 'Node.js', 'Python', 'Binary formats'],
-    stats: [
-      { n: 23, label: 'years of 1-minute gold prices' },
-      { n: 91, suffix: '%', label: 'smaller than the CSV, losslessly' },
-      { n: 3, label: 'editions: web, offline, training' },
-      { n: 2, label: 'desktop installers, .deb and .exe' }
-    ],
-    hero: { img: 'kakapips/chart.webp', bar: 'kakapips.vercel.app' },
-    features: [
-      ['Multi-chart layouts', 'Split, dock and swap panes, or pick a preset grid. Each pane keeps its own timeframe, scroll and zoom.'],
-      ['Bar replay', 'Cut the chart at any moment and step forward one bar at a time, so practice happens without seeing the future.'],
-      ['Drawing tools with undo', 'Trend lines, levels and shapes that persist between sessions, with a quick-access toolbar.'],
-      ['Works with no internet', 'The desktop edition keeps its data in private storage and loads it on every start. Nothing is fetched.'],
-      ['Its own data format', '.kpd packs are compressed and encrypted month by month, and checked bar for bar before they are written.'],
-      ['Research on the chart', 'The training edition shows each strategy\'s signals, stops, targets and every trade it took.']
-    ],
-    story: [
-      ['Every timeframe, side by side', 'Four charts, four timeframes, one screen. The crosshair and drawings stay in step without slowing the canvas down.', 'kakapips/layout.webp'],
-      ['Replay the market', 'Pick a date, hide everything after it, and play the bars forward. The quickest way to practise reading price.', 'kakapips/replay.webp'],
-      ['Offline, from a data pack', 'On first start the desktop app asks for a .kpd file, keeps a private copy and is ready from then on.', 'kakapips/offline-welcome.webp'],
-      ['Strategies drawn on real bars', 'The training edition overlays a study\'s signals and trades, so a backtest result can be checked by eye.', 'kakapips/training-trade.webp'],
-      ['Any date range, one download', 'A small local page cuts any range of history into a single pack, ready to copy to another PC.', 'kakapips/kpd-page.webp']
-    ],
-    hood: [
-      'Charts draw directly on canvas. Hover and crosshair never touch React state, so panning stays smooth.',
-      'A layout tree with pure split, dock and swap operations, saved to local storage.',
-      '.kpd: an encrypted header plus one encrypted, compressed block per calendar month. Packs merge month by month.',
-      'Electron serves the static export from a private app:// origin, so settings and data survive updates.',
-      'The Windows installer is built on Linux through Wine, and every build is smoke-tested in a headless browser.'
-    ]
-  },
-
-  {
     slug: 'magari',
+    kinds: ['web'],
+    client: 'Client work for Zuraja Magari, a transport company',
+    wide: true,
     name: 'Magari',
     color: '#14b8a6',
     category: 'Business web app',
@@ -70,8 +33,7 @@ export const projects = [
     tagline: 'A transport company\'s money, cars and fuel in one place, in Swahili.',
     intro: 'Magari runs the finances of a truck fleet. Drivers ask for fuel money from their phone, the vehicle manager approves it, the factory manager authorises it, and the accountant pays it out and attaches the receipt. Along the way the app measures fuel economy per car and per driver, keeps every car\'s profit or loss, and turns it all into reports the director can download.',
     links: [
-      { label: 'Open the live app', href: 'https://magari-manager.vercel.app', live: true },
-      { label: 'Source code', href: 'https://github.com/kakaAllord/magari-manager' }
+      { label: 'Open the live app', href: 'https://magari-manager.vercel.app', live: true }
     ],
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Pusher', 'React PDF', 'ExcelJS'],
     stats: [
@@ -109,6 +71,9 @@ export const projects = [
 
   {
     slug: 'irca',
+    kinds: ['web'],
+    client: 'Client work for IRCA, a church',
+    wide: false,
     name: 'IRCA Church System',
     short: 'IRCA',
     color: '#f08c4a',
@@ -155,6 +120,9 @@ export const projects = [
 
   {
     slug: 'tafes',
+    kinds: ['web'],
+    client: 'Client work for TAFES, a student fellowship',
+    wide: false,
     name: 'TAFES Registration',
     short: 'TAFES',
     color: '#e11d48',
@@ -191,7 +159,299 @@ export const projects = [
   },
 
   {
+    slug: 'kakapips',
+    kinds: ['web', 'desktop'],
+    client: 'Own product',
+    wide: true,
+    name: 'Kakapips',
+    color: '#f5b83d',
+    category: 'Trading software',
+    platform: 'Web, Linux, Windows',
+    status: 'Live on the web, desktop builds released',
+    year: '2026',
+    tagline: 'A charting workstation for gold traders. In the browser, on the desktop, and fully offline.',
+    intro: 'Kakapips is a fast XAUUSD charting app. Split the screen into as many charts as you need, draw on them, then replay the market bar by bar to practise decisions without hindsight. It started as a web app and grew into a family: an offline desktop edition that carries 23 years of minute data in its own file format, and a training edition that draws research strategies straight onto the chart.',
+    links: [{ label: 'Open the live app', href: 'https://kakapips.vercel.app', live: true }],
+    stack: ['Next.js', 'TypeScript', 'Canvas 2D', 'Electron', 'Node.js', 'Python', 'Binary formats'],
+    stats: [
+      { n: 23, label: 'years of 1-minute gold prices' },
+      { n: 91, suffix: '%', label: 'smaller than the CSV, losslessly' },
+      { n: 3, label: 'editions: web, offline, training' },
+      { n: 2, label: 'desktop installers, .deb and .exe' }
+    ],
+    hero: { img: 'kakapips/chart.webp', bar: 'kakapips.vercel.app' },
+    features: [
+      ['Multi-chart layouts', 'Split, dock and swap panes, or pick a preset grid. Each pane keeps its own timeframe, scroll and zoom.'],
+      ['Bar replay', 'Cut the chart at any moment and step forward one bar at a time, so practice happens without seeing the future.'],
+      ['Drawing tools with undo', 'Trend lines, levels and shapes that persist between sessions, with a quick-access toolbar.'],
+      ['Works with no internet', 'The desktop edition keeps its data in private storage and loads it on every start. Nothing is fetched.'],
+      ['Its own data format', '.kpd packs are compressed and encrypted month by month, and checked bar for bar before they are written.'],
+      ['Research on the chart', 'The training edition shows each strategy\'s signals, stops, targets and every trade it took.']
+    ],
+    story: [
+      ['Every timeframe, side by side', 'Four charts, four timeframes, one screen. The crosshair and drawings stay in step without slowing the canvas down.', 'kakapips/layout.webp'],
+      ['Replay the market', 'Pick a date, hide everything after it, and play the bars forward. The quickest way to practise reading price.', 'kakapips/replay.webp'],
+      ['Offline, from a data pack', 'On first start the desktop app asks for a .kpd file, keeps a private copy and is ready from then on.', 'kakapips/offline-welcome.webp'],
+      ['Strategies drawn on real bars', 'The training edition overlays a study\'s signals and trades, so a backtest result can be checked by eye.', 'kakapips/training-trade.webp'],
+      ['Any date range, one download', 'A small local page cuts any range of history into a single pack, ready to copy to another PC.', 'kakapips/kpd-page.webp']
+    ],
+    hood: [
+      'Charts draw directly on canvas. Hover and crosshair never touch React state, so panning stays smooth.',
+      'A layout tree with pure split, dock and swap operations, saved to local storage.',
+      '.kpd: an encrypted header plus one encrypted, compressed block per calendar month. Packs merge month by month.',
+      'Electron serves the static export from a private app:// origin, so settings and data survive updates.',
+      'The Windows installer is built on Linux through Wine, and every build is smoke-tested in a headless browser.'
+    ]
+  },
+
+  {
+    slug: 'shoprex',
+    kinds: ['mobile', 'web'],
+    client: 'Own product, built for shops',
+    wide: false,
+    name: 'Shoprex',
+    color: '#8b5cf6',
+    category: 'Retail platform',
+    platform: 'Android, Web',
+    status: 'In development',
+    year: '2026',
+    tagline: 'Turns an Android phone into a fast till and stock book for Tanzanian shops.',
+    intro: 'Most small shops run on a notebook. Shoprex puts selling and stock on the phone the shopkeeper already owns: scan a barcode, sell, and the stock and the day\'s takings update themselves. Owners get a web console to see every branch, worker and device. Swahili first, English ready, prices in TSh.',
+    links: [],
+    stack: ['NestJS', 'Prisma', 'PostgreSQL', 'Next.js', 'React Native', 'Expo'],
+    stats: [
+      { n: 3, label: 'apps: API, owner console, Android' },
+      { n: 1, label: 'backend that owns every rule' },
+      { n: 2, label: 'languages, Swahili and English' },
+      { n: 0, label: 'database access from the apps' }
+    ],
+    hero: {
+      v: 'pos',
+      rows: [['Sukari 1kg × 2', 6000], ['Unga 2kg', 4200], ['Mafuta 1L', 7500], ['Sabuni', 2800]]
+    },
+    features: [
+      ['Sell in seconds', 'Scan with the phone camera, adjust the quantity, take payment. Built for a queue at the counter.'],
+      ['Stock that keeps itself', 'Every sale moves stock. Deliveries and corrections are recorded with who made them.'],
+      ['Owners, managers, workers', 'Each role sees and does only what it should, on registered devices.'],
+      ['Many shops, one owner', 'Branches, products and reports across the whole business in a web console.'],
+      ['An audit trail', 'Every change to a price, stock or sale is kept, so mistakes can be traced and fixed.'],
+      ['Swahili first', 'The whole interface reads naturally in Swahili, with English one tap away.']
+    ],
+    hood: [
+      'The NestJS API is the only service that touches the database. Web and mobile call it.',
+      'Prisma and PostgreSQL. JWT auth with device registration and QR pairing.',
+      'React Native with Expo: the camera for barcodes, secure storage for tokens.',
+      'A Next.js owner console built on Radix UI.',
+      'Built in phases, each closed by an acceptance check run end to end over HTTP.'
+    ]
+  },
+
+  {
+    slug: 'ferry',
+    kinds: ['desktop', 'mobile'],
+    client: 'Own product',
+    wide: false,
+    name: 'Ferry',
+    color: '#2dd4bf',
+    category: 'Networking software',
+    platform: 'Windows, Linux, Android',
+    status: 'Version 0.4, in development',
+    year: '2026',
+    tagline: 'Send files and folders between your devices over the local network. Fast, verified and encrypted.',
+    intro: 'Ferry moves files between laptops and phones on the same network, with no internet in between. Devices find each other by name, a phone can make its own hotspot for others to join from a QR code, and every chunk of every file is checked before it is saved. Between paired devices the connection is encrypted and cannot be impersonated.',
+    links: [],
+    stack: ['Rust', 'Tauri', 'Flutter', 'TLS 1.3', 'BLAKE3'],
+    stats: [
+      { n: 16, suffix: ' MiB', label: 'chunks, each verified on its own' },
+      { n: 12, label: 'Rust crates in the engine' },
+      { n: 3, label: 'platforms on one engine' },
+      { n: 6, label: 'digits to pair two devices' }
+    ],
+    hero: {
+      v: 'radar',
+      devices: [["Neema's phone", 300, 38], ['Office PC', 35, 40], ['Laptop', 200, 42], ['Tablet', 125, 22]]
+    },
+    features: [
+      ['Finds devices by itself', 'Nearby Ferry devices show up by name. The receiver approves before anything arrives.'],
+      ['Pair once, trust after', 'Scan a code or compare six digits. Paired devices send without prompts and cannot be impersonated.'],
+      ['Verified, not hoped for', 'Every 16 MiB chunk and every whole file is checked with BLAKE3 before it is saved.'],
+      ['Hotspot from the phone', 'No router? A phone makes its own hotspot and others join by scanning a QR code.'],
+      ['Folders, not just files', 'Whole folders stream across, with safe paths and atomic replacement on Windows.'],
+      ['Messages too', 'Conversations with files and messages, and sharing from any other app on Android.']
+    ],
+    screens: [{ img: 'ferry/poster.webp', bar: 'Ferry' }],
+    hood: [
+      'A Rust engine split into twelve crates: protocol, session, pipeline, integrity and platform hosts.',
+      'A fixed, bounds-checked 32-byte protocol envelope with per-connection sequence checks.',
+      'TLS 1.3 between paired devices, trusted by key.',
+      'Tauri desktop shell, and a Flutter Android app on the same engine.',
+      'Each transfer writes to its own .ferrypart file, so a failed transfer never leaves a broken file behind.'
+    ]
+  },
+
+  {
+    slug: 'lockin',
+    kinds: ['mobile'],
+    client: 'Own product',
+    wide: false,
+    name: 'Lockin',
+    color: '#64748b',
+    category: 'Android app',
+    platform: 'Android',
+    status: 'Working build',
+    year: '2026',
+    tagline: 'A minimalist Android launcher with limits you cannot talk yourself out of.',
+    intro: 'Lockin replaces the home screen with a quiet, text-only one. You set your limits while you are thinking clearly, and they apply on their own when you are tempted. Loosening a limit takes seven days. Extra time comes only when a person you trust approves it, from a link in any browser.',
+    links: [],
+    stack: ['Flutter', 'Kotlin', 'Android Accessibility', 'Node.js'],
+    stats: [
+      { n: 7, label: 'days before a limit can loosen' },
+      { n: 3, label: 'daily priorities on the home screen' },
+      { n: 1, label: 'APK: Flutter UI, Kotlin core' },
+      { n: 0, label: 'apps the trusted person installs' }
+    ],
+    hero: { phone: 'lockin/home.webp' },
+    features: [
+      ['A text-only home screen', 'Only the essentials, a search that respects your limits, and up to three priorities for the day.'],
+      ['Daily limits and windows', 'Minutes per app per day, or access only at set times.'],
+      ['Committed for seven days', 'Tighten any time. Loosening waits a week, so a weak moment cannot undo a clear decision.'],
+      ['A trusted person approves extra time', 'They get a link and answer in any browser. No app, no account.'],
+      ['Honest about what it can do', 'Its limits and the ways around them are written down plainly, not hidden.'],
+      ['Respects privacy', 'It only sees the name of the app in front. Requests carry only the app and the minutes.']
+    ],
+    story: [
+      ['Decide now, enforce later', 'Setup asks you to choose your limits while you are calm and clear-headed.', 'lockin/onboarding-welcome.webp'],
+      ['Limits that only tighten', 'Each restriction is committed. It can be made stricter at once, but not looser until the week is up.', 'lockin/restrictions.webp'],
+      ['Focus sessions', 'Start a focus session and everything that is not essential waits until it ends.', 'lockin/focus-active.webp'],
+      ['Done for today', 'When an app\'s time is used up, it says so plainly and sends you back home.', 'lockin/limit-exhausted.webp'],
+      ['Scheduled windows', 'Some apps open only at set hours. Outside them, Lockin tells you when they are back.', 'lockin/outside-window.webp']
+    ],
+    phoneStory: true,
+    hood: [
+      'Flutter UI over a pure Kotlin core that enforces limits through Android\'s Accessibility service.',
+      'An allowance ledger: bonus minutes from approvals, consumed by actual use.',
+      'A small Node approval server. Tests on the Kotlin core, the Flutter UI and the backend.'
+    ]
+  },
+
+  {
+    slug: 'laura',
+    kinds: ['mobile', 'desktop'],
+    client: 'Own product',
+    wide: false,
+    name: 'Laura',
+    color: '#fb7185',
+    category: 'Productivity app',
+    platform: 'Android, Linux, Windows',
+    status: 'Version 1.1 released',
+    year: '2026',
+    tagline: 'A calm study timer with a mechanical flip clock. Offline, no accounts.',
+    intro: 'Laura opens on a setup screen and never starts by itself. Pick countdown, Pomodoro or stopwatch, press Start, and a full-screen split-flap clock takes over, with soft piano, rain or brown noise behind it if you want. No sign-up, no cloud and no network access at all.',
+    links: [],
+    stack: ['Flutter', 'Dart', 'SoLoud audio'],
+    stats: [
+      { n: 17, label: 'background sounds in four groups' },
+      { n: 3, label: 'modes: countdown, Pomodoro, stopwatch' },
+      { n: 3, label: 'platforms from one codebase' },
+      { n: 0, label: 'network requests, ever' }
+    ],
+    hero: { v: 'flip' },
+    features: [
+      ['A real split-flap clock', 'Built by hand: hinge line, shading and a mechanical flip on every digit. No clock package.'],
+      ['Three ways to focus', 'Countdown with presets, Pomodoro with short and long breaks, or a stopwatch.'],
+      ['Music that behaves', 'Piano, ambient, nature and noise. It pauses with the timer and can keep playing through breaks.'],
+      ['A gentle finish', 'Six completion sounds, from a soft bell to a harp, each with a preview.'],
+      ['History', 'Every session with its mode, planned and actual time, and how it ended.'],
+      ['Private by default', 'No accounts, no tracking and no internet permission.']
+    ],
+    hood: [
+      'flutter_soloud for gapless, low-latency audio.',
+      'Six real Bach piano recordings from the public-domain Open Goldberg Variations.',
+      'The flip clock is drawn by hand, digit by digit.',
+      'Released as an Android .apk and a Linux .deb.'
+    ]
+  },
+
+  {
+    slug: 'nyaraka',
+    kinds: ['mobile'],
+    client: 'Own product',
+    wide: false,
+    name: 'Nyaraka',
+    color: '#3b82f6',
+    category: 'Android app',
+    platform: 'Android, Linux',
+    status: 'Working build',
+    year: '2026',
+    tagline: 'Open any document on your phone, keep it in one library, and convert it to what you need.',
+    intro: 'Nyaraka means "documents" in Swahili. It opens Word, Excel, PowerPoint, OpenDocument, PDF, Markdown, HTML, CSV, JSON, RTF and plain text files, keeps a private copy of each in its own library, and converts between formats. Files arrive through Android\'s Open with and Share, and it reads Arabic, Hebrew, Chinese, Hindi and Amharic as well as it reads English.',
+    links: [],
+    stack: ['Flutter', 'Dart', 'PDF', 'OOXML', 'Unicode'],
+    stats: [
+      { n: 11, label: 'kinds of file it opens' },
+      { n: 9, label: 'writing systems, right to left included' },
+      { n: 1, label: 'private library for everything' },
+      { n: 0, label: 'uploads: it all stays on the phone' }
+    ],
+    hero: { v: 'docs' },
+    features: [
+      ['Opens almost anything', 'Word, Excel, PowerPoint, OpenDocument, PDF, Markdown, HTML, CSV, JSON, RTF and text.'],
+      ['Converts between formats', 'Turn a document into a PDF, a sheet into CSV, and more, without leaving the phone.'],
+      ['Your own library', 'Every file you open is kept as a private copy, so it is there even after the original moves.'],
+      ['Every script', 'Arabic and Hebrew read right to left, and Chinese, Thai or Amharic PDFs show every character.'],
+      ['Open with and Share', 'Files come in from any app through Android\'s own menus.'],
+      ['Offline', 'No account, no upload. Everything happens on the device.']
+    ],
+    hood: [
+      'Office files parsed straight from their XML inside the zip.',
+      'PDF viewing with pdfrx, and PDF writing with fonts embedded for every script.',
+      'Right-to-left layout handled at the paragraph level.',
+      'Test documents in Arabic, Hindi and mixed scripts, checked on a real phone.'
+    ]
+  },
+
+  {
+    slug: 'eleguard',
+    kinds: ['web', 'data'],
+    client: 'Final-year team project',
+    wide: false,
+    name: 'EleGuard',
+    color: '#84cc16',
+    category: 'IoT platform, team project',
+    platform: 'Web and sensor nodes',
+    status: 'Final-year project',
+    year: '2026',
+    tagline: 'Seismic sensors that hear elephants coming, warn the village and send a drone.',
+    intro: 'Elephants crossing into farmland cost lives, crops and homes. EleGuard places seismic sensor nodes along wildlife corridors. When the ground shakes the way a large animal makes it shake, the system alerts the villagers and rangers in that zone and plans a drone route to turn the animals back before they reach the houses. Built as a team final-year project.',
+    links: [],
+    stack: ['NestJS', 'PostgreSQL', 'MQTT', 'Socket.io', 'BullMQ', 'Redis', 'React 19', 'Vite'],
+    stats: [
+      { n: 4, label: 'steps: detect, alert, respond, track' },
+      { n: 3, label: 'kinds of node: seismic, village, drone' },
+      { n: 1, label: 'live map for every incident' }
+    ],
+    hero: { v: 'seis' },
+    features: [
+      ['Detect', 'Seismic nodes along the corridor pick up the vibration pattern of large animals moving.'],
+      ['Alert the right people', 'Only the villagers and rangers in that sensor\'s zone are notified, by SMS, email or push.'],
+      ['Plan the response', 'A drone flight plan is generated to reach the animals and turn them back.'],
+      ['Live incident map', 'Active alerts, sensor health and drone missions on one screen.'],
+      ['Sensor registry', 'Every node registered with its GPS position and linked to the villages it faces.'],
+      ['History and patterns', 'Every event, alert and mission logged, to map where conflict happens.']
+    ],
+    hood: [
+      'Nodes publish over MQTT 5 to a HiveMQ broker. The NestJS backend turns events into alerts.',
+      'Socket.io pushes detections to the dashboard the moment they arrive.',
+      'BullMQ and Redis queue notifications and drone missions.',
+      'React 19, Vite and Tailwind on the dashboard. Simulators stand in for real nodes during development.'
+    ]
+  },
+
+  {
     slug: 'light',
+    kinds: ['desktop'],
+    client: 'Own product, built for churches',
+    wide: true,
     name: 'Light',
     color: '#60a5fa',
     category: 'Desktop app',
@@ -233,198 +493,10 @@ export const projects = [
   },
 
   {
-    slug: 'ferry',
-    name: 'Ferry',
-    color: '#2dd4bf',
-    category: 'Networking software',
-    platform: 'Windows, Linux, Android',
-    status: 'Version 0.4, in development',
-    year: '2026',
-    tagline: 'Send files and folders between your devices over the local network. Fast, verified and encrypted.',
-    intro: 'Ferry moves files between laptops and phones on the same network, with no internet in between. Devices find each other by name, a phone can make its own hotspot for others to join from a QR code, and every chunk of every file is checked before it is saved. Between paired devices the connection is encrypted and cannot be impersonated.',
-    links: [{ label: 'Source code', href: 'https://github.com/kakaAllord/Ferry' }],
-    stack: ['Rust', 'Tauri', 'Flutter', 'TLS 1.3', 'BLAKE3'],
-    stats: [
-      { n: 16, suffix: ' MiB', label: 'chunks, each verified on its own' },
-      { n: 12, label: 'Rust crates in the engine' },
-      { n: 3, label: 'platforms on one engine' },
-      { n: 6, label: 'digits to pair two devices' }
-    ],
-    hero: {
-      v: 'radar',
-      devices: [["Neema's phone", 300, 38], ['Office PC', 35, 40], ['Laptop', 200, 42], ['Tablet', 125, 22]]
-    },
-    features: [
-      ['Finds devices by itself', 'Nearby Ferry devices show up by name. The receiver approves before anything arrives.'],
-      ['Pair once, trust after', 'Scan a code or compare six digits. Paired devices send without prompts and cannot be impersonated.'],
-      ['Verified, not hoped for', 'Every 16 MiB chunk and every whole file is checked with BLAKE3 before it is saved.'],
-      ['Hotspot from the phone', 'No router? A phone makes its own hotspot and others join by scanning a QR code.'],
-      ['Folders, not just files', 'Whole folders stream across, with safe paths and atomic replacement on Windows.'],
-      ['Messages too', 'Conversations with files and messages, and sharing from any other app on Android.']
-    ],
-    screens: [{ img: 'ferry/poster.webp', bar: 'Ferry' }],
-    hood: [
-      'A Rust engine split into twelve crates: protocol, session, pipeline, integrity and platform hosts.',
-      'A fixed, bounds-checked 32-byte protocol envelope with per-connection sequence checks.',
-      'TLS 1.3 between paired devices, trusted by key.',
-      'Tauri desktop shell, and a Flutter Android app on the same engine.',
-      'Each transfer writes to its own .ferrypart file, so a failed transfer never leaves a broken file behind.'
-    ]
-  },
-
-  {
-    slug: 'shoprex',
-    name: 'Shoprex',
-    color: '#8b5cf6',
-    category: 'Retail platform',
-    platform: 'Android, Web',
-    status: 'In development',
-    year: '2026',
-    tagline: 'Turns an Android phone into a fast till and stock book for Tanzanian shops.',
-    intro: 'Most small shops run on a notebook. Shoprex puts selling and stock on the phone the shopkeeper already owns: scan a barcode, sell, and the stock and the day\'s takings update themselves. Owners get a web console to see every branch, worker and device. Swahili first, English ready, prices in TSh.',
-    links: [{ label: 'Source code', href: 'https://github.com/kakaAllord/shoprex' }],
-    stack: ['NestJS', 'Prisma', 'PostgreSQL', 'Next.js', 'React Native', 'Expo'],
-    stats: [
-      { n: 3, label: 'apps: API, owner console, Android' },
-      { n: 1, label: 'backend that owns every rule' },
-      { n: 2, label: 'languages, Swahili and English' },
-      { n: 0, label: 'database access from the apps' }
-    ],
-    hero: {
-      v: 'pos',
-      rows: [['Sukari 1kg × 2', 6000], ['Unga 2kg', 4200], ['Mafuta 1L', 7500], ['Sabuni', 2800]]
-    },
-    features: [
-      ['Sell in seconds', 'Scan with the phone camera, adjust the quantity, take payment. Built for a queue at the counter.'],
-      ['Stock that keeps itself', 'Every sale moves stock. Deliveries and corrections are recorded with who made them.'],
-      ['Owners, managers, workers', 'Each role sees and does only what it should, on registered devices.'],
-      ['Many shops, one owner', 'Branches, products and reports across the whole business in a web console.'],
-      ['An audit trail', 'Every change to a price, stock or sale is kept, so mistakes can be traced and fixed.'],
-      ['Swahili first', 'The whole interface reads naturally in Swahili, with English one tap away.']
-    ],
-    hood: [
-      'The NestJS API is the only service that touches the database. Web and mobile call it.',
-      'Prisma and PostgreSQL. JWT auth with device registration and QR pairing.',
-      'React Native with Expo: the camera for barcodes, secure storage for tokens.',
-      'A Next.js owner console built on Radix UI.',
-      'Built in phases, each closed by an acceptance check run end to end over HTTP.'
-    ]
-  },
-
-  {
-    slug: 'lockin',
-    name: 'Lockin',
-    color: '#e5e7eb',
-    category: 'Android app',
-    platform: 'Android',
-    status: 'Working build',
-    year: '2026',
-    tagline: 'A minimalist Android launcher with limits you cannot talk yourself out of.',
-    intro: 'Lockin replaces the home screen with a quiet, text-only one. You set your limits while you are thinking clearly, and they apply on their own when you are tempted. Loosening a limit takes seven days. Extra time comes only when a person you trust approves it, from a link in any browser.',
-    links: [],
-    stack: ['Flutter', 'Kotlin', 'Android Accessibility', 'Node.js'],
-    stats: [
-      { n: 7, label: 'days before a limit can loosen' },
-      { n: 3, label: 'daily priorities on the home screen' },
-      { n: 1, label: 'APK: Flutter UI, Kotlin core' },
-      { n: 0, label: 'apps the trusted person installs' }
-    ],
-    hero: { phone: 'lockin/home.webp' },
-    features: [
-      ['A text-only home screen', 'Only the essentials, a search that respects your limits, and up to three priorities for the day.'],
-      ['Daily limits and windows', 'Minutes per app per day, or access only at set times.'],
-      ['Committed for seven days', 'Tighten any time. Loosening waits a week, so a weak moment cannot undo a clear decision.'],
-      ['A trusted person approves extra time', 'They get a link and answer in any browser. No app, no account.'],
-      ['Honest about what it can do', 'Its limits and the ways around them are written down plainly, not hidden.'],
-      ['Respects privacy', 'It only sees the name of the app in front. Requests carry only the app and the minutes.']
-    ],
-    story: [
-      ['Decide now, enforce later', 'Setup asks you to choose your limits while you are calm and clear-headed.', 'lockin/onboarding-welcome.webp'],
-      ['Limits that only tighten', 'Each restriction is committed. It can be made stricter at once, but not looser until the week is up.', 'lockin/restrictions.webp'],
-      ['Focus sessions', 'Start a focus session and everything that is not essential waits until it ends.', 'lockin/focus-active.webp'],
-      ['Done for today', 'When an app\'s time is used up, it says so plainly and sends you back home.', 'lockin/limit-exhausted.webp'],
-      ['Scheduled windows', 'Some apps open only at set hours. Outside them, Lockin tells you when they are back.', 'lockin/outside-window.webp']
-    ],
-    phoneStory: true,
-    hood: [
-      'Flutter UI over a pure Kotlin core that enforces limits through Android\'s Accessibility service.',
-      'An allowance ledger: bonus minutes from approvals, consumed by actual use.',
-      'A small Node approval server. Tests on the Kotlin core, the Flutter UI and the backend.'
-    ]
-  },
-
-  {
-    slug: 'laura',
-    name: 'Laura',
-    color: '#fb7185',
-    category: 'Productivity app',
-    platform: 'Android, Linux, Windows',
-    status: 'Version 1.1 released',
-    year: '2026',
-    tagline: 'A calm study timer with a mechanical flip clock. Offline, no accounts.',
-    intro: 'Laura opens on a setup screen and never starts by itself. Pick countdown, Pomodoro or stopwatch, press Start, and a full-screen split-flap clock takes over, with soft piano, rain or brown noise behind it if you want. No sign-up, no cloud and no network access at all.',
-    links: [],
-    stack: ['Flutter', 'Dart', 'SoLoud audio'],
-    stats: [
-      { n: 17, label: 'background sounds in four groups' },
-      { n: 3, label: 'modes: countdown, Pomodoro, stopwatch' },
-      { n: 3, label: 'platforms from one codebase' },
-      { n: 0, label: 'network requests, ever' }
-    ],
-    hero: { v: 'flip' },
-    features: [
-      ['A real split-flap clock', 'Built by hand: hinge line, shading and a mechanical flip on every digit. No clock package.'],
-      ['Three ways to focus', 'Countdown with presets, Pomodoro with short and long breaks, or a stopwatch.'],
-      ['Music that behaves', 'Piano, ambient, nature and noise. It pauses with the timer and can keep playing through breaks.'],
-      ['A gentle finish', 'Six completion sounds, from a soft bell to a harp, each with a preview.'],
-      ['History', 'Every session with its mode, planned and actual time, and how it ended.'],
-      ['Private by default', 'No accounts, no tracking and no internet permission.']
-    ],
-    hood: [
-      'flutter_soloud for gapless, low-latency audio.',
-      'Six real Bach piano recordings from the public-domain Open Goldberg Variations.',
-      'The flip clock is drawn by hand, digit by digit.',
-      'Released as an Android .apk and a Linux .deb.'
-    ]
-  },
-
-  {
-    slug: 'nyaraka',
-    name: 'Nyaraka',
-    color: '#3b82f6',
-    category: 'Android app',
-    platform: 'Android, Linux',
-    status: 'Working build',
-    year: '2026',
-    tagline: 'Open any document on your phone, keep it in one library, and convert it to what you need.',
-    intro: 'Nyaraka means "documents" in Swahili. It opens Word, Excel, PowerPoint, OpenDocument, PDF, Markdown, HTML, CSV, JSON, RTF and plain text files, keeps a private copy of each in its own library, and converts between formats. Files arrive through Android\'s Open with and Share, and it reads Arabic, Hebrew, Chinese, Hindi and Amharic as well as it reads English.',
-    links: [],
-    stack: ['Flutter', 'Dart', 'PDF', 'OOXML', 'Unicode'],
-    stats: [
-      { n: 11, label: 'kinds of file it opens' },
-      { n: 9, label: 'writing systems, right to left included' },
-      { n: 1, label: 'private library for everything' },
-      { n: 0, label: 'uploads: it all stays on the phone' }
-    ],
-    hero: { v: 'docs' },
-    features: [
-      ['Opens almost anything', 'Word, Excel, PowerPoint, OpenDocument, PDF, Markdown, HTML, CSV, JSON, RTF and text.'],
-      ['Converts between formats', 'Turn a document into a PDF, a sheet into CSV, and more, without leaving the phone.'],
-      ['Your own library', 'Every file you open is kept as a private copy, so it is there even after the original moves.'],
-      ['Every script', 'Arabic and Hebrew read right to left, and Chinese, Thai or Amharic PDFs show every character.'],
-      ['Open with and Share', 'Files come in from any app through Android\'s own menus.'],
-      ['Offline', 'No account, no upload. Everything happens on the device.']
-    ],
-    hood: [
-      'Office files parsed straight from their XML inside the zip.',
-      'PDF viewing with pdfrx, and PDF writing with fonts embedded for every script.',
-      'Right-to-left layout handled at the paragraph level.',
-      'Test documents in Arabic, Hindi and mixed scripts, checked on a real phone.'
-    ]
-  },
-
-  {
     slug: 'gold-lab',
+    kinds: ['data'],
+    client: 'Own research',
+    wide: false,
     name: 'Gold Research Lab',
     short: 'Gold Lab',
     color: '#e3b341',
@@ -456,40 +528,6 @@ export const projects = [
       'Resampling from 5 minutes to monthly, with trading days cut at 17:00 New York.',
       'Deflated Sharpe Ratio and Wilson intervals, so lucky results are called lucky.',
       'LightGBM walk-forward models and a Numba-accelerated trade simulator.'
-    ]
-  },
-
-  {
-    slug: 'eleguard',
-    name: 'EleGuard',
-    color: '#84cc16',
-    category: 'IoT platform, team project',
-    platform: 'Web and sensor nodes',
-    status: 'Final-year project',
-    year: '2026',
-    tagline: 'Seismic sensors that hear elephants coming, warn the village and send a drone.',
-    intro: 'Elephants crossing into farmland cost lives, crops and homes. EleGuard places seismic sensor nodes along wildlife corridors. When the ground shakes the way a large animal makes it shake, the system alerts the villagers and rangers in that zone and plans a drone route to turn the animals back before they reach the houses. Built as a team final-year project.',
-    links: [],
-    stack: ['NestJS', 'PostgreSQL', 'MQTT', 'Socket.io', 'BullMQ', 'Redis', 'React 19', 'Vite'],
-    stats: [
-      { n: 4, label: 'steps: detect, alert, respond, track' },
-      { n: 3, label: 'kinds of node: seismic, village, drone' },
-      { n: 1, label: 'live map for every incident' }
-    ],
-    hero: { v: 'seis' },
-    features: [
-      ['Detect', 'Seismic nodes along the corridor pick up the vibration pattern of large animals moving.'],
-      ['Alert the right people', 'Only the villagers and rangers in that sensor\'s zone are notified, by SMS, email or push.'],
-      ['Plan the response', 'A drone flight plan is generated to reach the animals and turn them back.'],
-      ['Live incident map', 'Active alerts, sensor health and drone missions on one screen.'],
-      ['Sensor registry', 'Every node registered with its GPS position and linked to the villages it faces.'],
-      ['History and patterns', 'Every event, alert and mission logged, to map where conflict happens.']
-    ],
-    hood: [
-      'Nodes publish over MQTT 5 to a HiveMQ broker. The NestJS backend turns events into alerts.',
-      'Socket.io pushes detections to the dashboard the moment they arrive.',
-      'BullMQ and Redis queue notifications and drone missions.',
-      'React 19, Vite and Tailwind on the dashboard. Simulators stand in for real nodes during development.'
     ]
   }
 ];
