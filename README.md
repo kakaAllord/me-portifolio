@@ -20,22 +20,21 @@ Live at https://kakaallord.github.io/me-portifolio/, with a page per project und
 
 ## Editing
 
-- Contact details, the hero typewriter and terminal, the boot screen: `assets/js/config.js`.
-- The projects: `tools/projects.mjs`, then run `node tools/build-projects.mjs`. That rewrites
-  every `projects/<name>/index.html`, the project cards in `index.html` (between the
-  `projects:*` markers) and `sitemap.xml`. Commit the generated files; GitHub Pages serves
-  them as they are.
+- Contact details: `assets/js/config.js`.
+- The projects: `tools/projects.mjs`. Home page copy (hero, services, process, about):
+  `tools/build-projects.mjs`. After either, run `node tools/build-projects.mjs`. It rewrites
+  `index.html`, every `projects/<name>/index.html` and `sitemap.xml`. Commit the generated
+  files; GitHub Pages serves them as they are.
 - Screenshots live in `assets/img/projects/<name>/` as WebP.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
-| `assets/css/style.css` | Tokens, base, home page sections |
-| `assets/css/projects.css` | Device frames, project cards, the pinned gallery, project pages |
+| `assets/css/site.css` | Tokens, home page and project pages |
 | `assets/css/visuals.css` | The animated scenes used where a project has no screenshot |
-| `assets/js/main.js` | Boot, theme, cursor, nav, reveals and the scroll-driven motion |
+| `assets/js/site.js` | Nav, reveals, filters, counters, process line, project story, contact links |
 | `assets/js/visuals.js` | What moves inside those scenes |
-| `tools/` | Project data and the page generator |
+| `tools/` | Project data and the site generator |
 
-Every effect respects `prefers-reduced-motion`.
+Built desktop first. Every effect respects `prefers-reduced-motion`.
