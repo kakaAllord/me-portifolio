@@ -8,7 +8,6 @@
      pos    Shoprex ringing up a sale, row by row
      flow   a request walking through its approvals (Magari, IRCA)
      seis   EleGuard: herd, seismograph, alert, drone
-     eq     Gold Lab: noise runs vs the best candidate
    ========================================================================== */
 
 (function () {
@@ -251,62 +250,8 @@
     };
   }
 
-  /* ====================== EQUITY ====================== */
-  function eq(root) {
-    var svg = el('svg', { viewBox: '0 0 600 375', 'aria-hidden': 'true', preserveAspectRatio: 'none' });
-    root.insertBefore(svg, root.firstChild);
-    var X0 = 30, X1 = 580, Y0 = 70, Y1 = 345, ZERO = 230, N = 150;
-    var xAt = function (i) { return X0 + (X1 - X0) * i / (N - 1); };
-    var VAL = 0.55, HOLD = 0.78;
-
-    el('rect', { class: 'hold', x: X0 + (X1 - X0) * HOLD, y: Y0 - 30, width: (X1 - X0) * (1 - HOLD), height: Y1 - Y0 + 30 }, svg);
-    [VAL, HOLD].forEach(function (s) {
-      var x = X0 + (X1 - X0) * s;
-      el('line', { class: 'split', x1: x, x2: x, y1: Y0 - 30, y2: Y1 }, svg);
-    });
-    el('line', { class: 'zero', x1: X0, x2: X1, y1: ZERO, y2: ZERO }, svg);
-    [['development', X0 + 4], ['validation', X0 + (X1 - X0) * VAL + 6], ['sealed holdout', X0 + (X1 - X0) * HOLD + 6]].forEach(function (l, k) {
-      var tx = el('text', { x: l[1], y: Y1 + 0, class: k === 2 ? 'tag' : '' }, svg);
-      tx.setAttribute('y', 362);
-      tx.textContent = l[0];
-    });
-    var z = el('text', { x: X0 + 2, y: ZERO - 6 }, svg); z.textContent = '0 R';
-
-    function path(ys) {
-      return ys.map(function (y, i) { return (i ? 'L' : 'M') + xAt(i).toFixed(1) + ' ' + y.toFixed(1); }).join(' ');
-    }
-
-    var r = rng(42);
-    for (var k = 0; k < 24; k++) {
-      var y = ZERO, ys = [];
-      for (var i = 0; i < N; i++) { ys.push(Math.max(Y0, Math.min(Y1, y))); y += gauss(r) * 3.4; }
-      el('path', { class: 'noise', d: path(ys) }, svg);
-    }
-
-    // the best candidate: good in development, loses in validation, fine on the holdout
-    var r2 = rng(5), yb = ZERO, best = [];
-    for (var j = 0; j < N; j++) {
-      var p = j / (N - 1);
-      var drift = p < VAL ? -0.85 : p < HOLD ? 0.6 : -0.75;
-      best.push(Math.max(Y0 - 20, Math.min(Y1, yb)));
-      yb += drift + gauss(r2) * 2.2;
-    }
-    var b = el('path', { class: 'best', d: path(best) }, svg);
-    var len = b.getTotalLength();
-    b.style.strokeDasharray = len;
-    b.style.strokeDashoffset = REDUCED ? 0 : len;
-
-    var lt = el('text', { class: 'tag', x: X0 + 4, y: 34 }, svg);
-    lt.textContent = 'gold line: best of 170 rules · grey: the same search on pure noise';
-
-    return {
-      start: function () { root.classList.add('draw'); },
-      stop: function () {}
-    };
-  }
-
   /* ====================== WIRING ====================== */
-  var SCENES = { flip: flip, pos: pos, flow: flow, seis: seis, eq: eq };
+  var SCENES = { flip: flip, pos: pos, flow: flow, seis: seis };
 
   function init() {
     var items = $$('.v');

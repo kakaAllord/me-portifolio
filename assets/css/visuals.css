@@ -11,7 +11,6 @@
      .v-pos     Shoprex    a phone till ringing up a sale
      .v-flow    Magari / IRCA   a request moving through its approvals
      .v-seis    EleGuard   seismograph, corridor map, drone
-     .v-eq      Gold Lab   noise vs the best candidate
 
    The timing for the JS-driven ones lives in assets/js/visuals.js.
    ========================================================================== */
@@ -400,27 +399,6 @@
 .v-seis__alert b { display: block; color: #fff; font-size: 1.8cqw; }
 .v-seis.alert .v-seis__alert { opacity: 1; transform: none; }
 @keyframes vRipple { from { r: 6; opacity: 0.9; } to { r: 34; opacity: 0; } }
-
-/* ============================ GOLD LAB: equity ============================ */
-.v-eq { background: #0a0905; }
-.v-eq svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.v-eq .noise { fill: none; stroke: #78716c; stroke-width: 1; opacity: 0.22; }
-.v-eq .best { fill: none; stroke: var(--vc); stroke-width: 2.2; stroke-linejoin: round; }
-.v-eq .zero { stroke: #57534e; stroke-dasharray: 3 4; }
-.v-eq .hold { fill: rgba(227, 179, 65, 0.06); }
-.v-eq .split { stroke: #44403c; }
-.v-eq text { font-family: var(--mono); font-size: 9px; fill: #a8a29e; }
-.v-eq .tag { fill: var(--vc); }
-.v-eq.draw .best { animation: vDraw 3.4s var(--ease) forwards; }
-@keyframes vDraw { to { stroke-dashoffset: 0; } }
-.v-eq__note {
-  position: absolute; right: 3cqw; top: 3cqw;
-  padding: 1.4cqw 1.8cqw; border-radius: 1.4cqw;
-  background: rgba(28, 25, 23, 0.9); border: 1px solid rgba(227, 179, 65, 0.3);
-  font-family: var(--mono); font-size: 1.45cqw; line-height: 1.6; color: #d6d3d1;
-}
-.v-eq__note b { color: var(--vc); }
-.v-eq__note s { color: #f87171; text-decoration: none; }
 
 /* ============================ shared keyframes ============================ */
 @keyframes vSpin  { to { transform: rotate(360deg); } }
