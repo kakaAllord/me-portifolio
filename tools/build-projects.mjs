@@ -122,11 +122,6 @@ function scene(v) {
       return `<div class="v v-seis" data-v="seis">
         <div class="v-seis__alert"><b>Elephants near S-02</b>Alert sent to the village and the ranger post. Drone on its way.</div>
       </div>`;
-
-    case 'eq':
-      return `<div class="v v-eq" data-v="eq">
-        <div class="v-eq__note">best of 170 rules<br><b>+0.354 R</b> a trade on the holdout<br>only 71 trades, lost on validation<br><s>✕ rejected</s></div>
-      </div>`;
   }
   return '';
 }
@@ -319,7 +314,7 @@ const OFFERS = [
     t: 'Data and analysis',
     d: 'Collect data properly, clean it, test ideas against it honestly, and turn the results into charts people can read.',
     get: ['Clean, documented datasets', 'Tests that guard against luck', 'Clear reports and charts'],
-    proof: ['gold-lab', 'eleguard']
+    proof: ['eleguard']
   }
 ];
 
@@ -331,7 +326,7 @@ function home() {
 
   return `${head({
     title: 'Allord Archard, Full-Stack Developer | Web, Mobile & Desktop Apps',
-    description: 'Freelance full-stack developer in Tanzania. Business systems, registration sites, Android apps and desktop software, designed, built and shipped end to end. See 12 real projects.',
+    description: 'Freelance full-stack developer in Tanzania. Business systems, registration sites, Android apps and desktop software, designed, built and shipped end to end. See 11 real projects.',
     url: SITE, image: `${SITE}assets/img/og.jpg`, base: '',
     extra: `<script type="application/ld+json">
 ${JSON.stringify({

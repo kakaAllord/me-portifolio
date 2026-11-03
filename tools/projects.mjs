@@ -490,44 +490,5 @@ export const projects = [
       'PowerPoint XML parsed into a slide model with its images.',
       'The .deb is built on Linux. The Windows installer is built by GitHub Actions.'
     ]
-  },
-
-  {
-    slug: 'gold-lab',
-    kinds: ['data'],
-    client: 'Own research',
-    wide: false,
-    name: 'Gold Research Lab',
-    short: 'Gold Lab',
-    color: '#e3b341',
-    category: 'Data and quant research',
-    platform: 'Python',
-    status: 'Study complete',
-    year: '2026',
-    tagline: 'Twenty-three years of gold prices, collected, cleaned and tested by a study built to say no.',
-    intro: 'Does gold have a pattern you can trade after costs? Instead of tuning until something looks good, this study fixed its rules first, sealed the last four years of data behind a hash, and opened it once. The answer was no. The evidence for that no is the product: a clean 1-minute dataset back to 2003, a measured cost model, and a pipeline that also runs on pure noise to show what luck looks like.',
-    links: [],
-    stack: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'LightGBM', 'Numba', 'MQL5'],
-    stats: [
-      { n: 23, label: 'years of 1-minute data' },
-      { n: 46550, label: 'rule combinations tested' },
-      { n: 32, label: 'walk-forward ML models' },
-      { n: 9, label: 'noise series used as controls' }
-    ],
-    hero: { v: 'eq' },
-    features: [
-      ['Data you can trust', 'Dukascopy and broker history merged session by session, in UTC, with a report of every gap.'],
-      ['Rules fixed before results', 'Splits, budgets, the cost model and the pass mark were written down before any model was trained.'],
-      ['A sealed holdout', 'The final years were hashed and opened once, for four frozen candidates.'],
-      ['Tested against noise', 'The whole pipeline ran again on nine synthetic series with no signal, to show what luck produces.'],
-      ['Honest reporting', 'The best candidate made +0.35 R per trade on the holdout, but on 71 trades and after losing on validation. It was rejected.'],
-      ['Feeds the charts', 'The same data powers Kakapips, and its training edition draws these strategies on real bars.']
-    ],
-    hood: [
-      'A resumable, throttled downloader that caches every day as its own file.',
-      'Resampling from 5 minutes to monthly, with trading days cut at 17:00 New York.',
-      'Deflated Sharpe Ratio and Wilson intervals, so lucky results are called lucky.',
-      'LightGBM walk-forward models and a Numba-accelerated trade simulator.'
-    ]
   }
 ];
