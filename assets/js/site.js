@@ -76,6 +76,20 @@
     var buttons = $$('button', bar);
     var cards = $$('.card', grid);
 
+    // On phones the grid has two columns. If the last visible tile would sit alone
+    // in its row, flag it so mobile.css can stretch it across the row.
+    function tidy() {
+      var filtered = grid.classList.contains('filtered'), col = 0, wides = 0, last = null;
+      cards.forEach(function (c) {
+        c.classList.toggle('solo', false);
+        if (c.hidden) return;
+        var wide = !filtered && c.classList.contains('card--wide') && ++wides < 3;
+        if (wide) { col = 0; last = null; } else { col = (col + 1) % 2; last = c; }
+      });
+      if (last && col === 1) last.classList.add('solo');
+    }
+    tidy();
+
     bar.addEventListener('click', function (e) {
       var b = e.target.closest('button');
       if (!b) return;
@@ -92,6 +106,7 @@
           c.classList.add('enter');
         }
       });
+      tidy();
     });
   }
 
